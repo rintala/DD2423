@@ -215,21 +215,63 @@ end
 
 "To better understand the role of the logarithm function, see also Lab 0B ”Elementary image operations”."
 
-Discrete Fourier transformation in two dimensions - given in lecture 03, page 39:
-
-- $\hat F(u,v) = \frac{1}{\sqrt{MN}}  \sum\limits_{m=0}^{M-1}[ \sum\limits_{n=0}^{N-1}[f(m,n)e^{-2\pi i (\frac{mu}{M}+\frac{nv}{N})}]] \quad (1) $
-
-
-
-_________________________________________________________________________
-
+***Discrete Fourier transformation in two dimensions*** - given in lecture 03, page 39:
+$$
+\hat F(u,v) = \frac{1}{\sqrt{MN}}  \sum\limits_{m=0}^{M-1}[ \sum\limits_{n=0}^{N-1}[f(m,n)e^{-2\pi i (\frac{mu}{M}+\frac{nv}{N})}]] \quad (1)
+$$
+Looking at G we have:
+$$
+\begin{align*}
+f(m,n) =
+\begin{cases}
+1, if \space 57 \leq n \leq 72
+\\ 0,else
+\end{cases}
+\end{align*}
+$$
  
+
+We can thus split up (1) into its two constituting sums - due to the separability property *(Property I - Lecture 4, page 9)*, which says a 2D DFT can be implemented as a series of 1D DFTs along each column followed by 1D DFTs along each row:
+$$
+\hat F(u,v) = \frac{1}{\sqrt{MN}} \sum\limits_{n=57}^{72}[e^{-2\pi i (\frac{nv}{N})}\sum\limits_{m=0}^{M-1}[ e^{-2\pi i (\frac{mu}{M})}]]
+$$
+Now we simplify the expression, with the property of Kronecker delta function:
+$$
+\begin{align*}\delta(m) =
+\begin{cases}1, \quad if\space m = 0
+\\ 0, \quad if\space m \neq 1
+\end{cases}
+\end{align*}
+$$
+By identifying:
+$$
+\sum\limits_{m=0}^{M-1}[ e^{-2\pi i (\frac{mu}{M})}]] = \delta(m)
+$$
+We can write the final expression as:
+$$
+\hat F(u,v) = \frac{1}{\sqrt{MN}} \sum\limits_{n=57}^{72}[e^{-2\pi i (\frac{nv}{N})}]*\delta(m)
+$$
+
+
+This means, $\hat F(u,v)$ only is a non-zero value, as long as $m=0$, which implies $\delta(m) = 1$
+
+Thus, the Fourier spectra for G will be concetrated to the upper border.
+
+The Fourier spectra for function F will be concetrated along the left border with the same logic (since G=F') i.e. since $\hat F(u,v)$ is a non-zero value as long as n=0 for F.
+
+<!-- insert some images -->
+
+
+
+---
 
 **Question 8**: Why is the logarithm function applied?
 
- 
+**Answers:**
 
-Answers:
+The logarithm function will even out the distribution of the pixels, which allows the low dynamic ranges to become visible and in that allow for a more well balanced and more detailed image.
+
+<!-- add some more text here -->
 
  
 

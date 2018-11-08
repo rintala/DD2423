@@ -23,10 +23,10 @@ showgrey(F);
 title('F')
 subplot(4, 2, 2);
 showgrey(G);
-title('G')
+title('G - transpose(F)')
 subplot(4, 2, 3);
 showgrey(H);
-title('H')
+title('H - F+2*G')
 
 %Display Fourier spectra of Fhat, Ghat, Hhat with showgrey
 subplot(4, 2, 4);
