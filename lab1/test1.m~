@@ -31,20 +31,15 @@ title('H')
 %Display Fourier spectra of Fhat, Ghat, Hhat with showgrey
 subplot(4, 2, 4);
 showgrey(log(1 + abs(Fhat)));
-title('Fhat');
-
 subplot(4, 2, 5);
 showgrey(log(1 + abs(Ghat)));
-title('Ghat');
-
 subplot(4, 2, 6);
 showgrey(log(1 + abs(Hhat)));
-title('Hhat');
 
 %Commands fftshift and log - why?
 subplot(4, 2, 7);
 showgrey(log(1 + abs(fftshift(Hhat))));
-title('ffshifted and log')
+
 
 %Compute the discrete Fourier transforms of the images
 Fhat = fft2(F);

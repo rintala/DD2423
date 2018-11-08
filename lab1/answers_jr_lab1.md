@@ -145,7 +145,7 @@ The Matlab fftshift works as explained by the help function:
 	"fftshift Shift zero-frequency component to center of spectrum. /../ For matrices, fftshift(X) swaps the first and third quadrants and the second and fourth quadrants."
 ```
 
-This moves the default origin of the upper left corner, to instead having the center of the spectrum being the Fourier transform's center; which means we have to calculate the new position of the point **relative to** the new origin of the center. A point (p,q) that has passed the center i.e. having either $p > sz/2​$ OR $q > sz/2​$ will thus get its position according to:
+This moves the default origin of the upper left corner, to instead having the center of the spectrum being the Fourier transform's center; which means we have to calculate the new position of the point **relative to** the new origin of the center. A point (p,q) that has passed the center i.e. having either $p > sz/2$ OR $q > sz/2$ will thus get its position according to:
 
 - $uc = u-1-sz$
 - $vc = v -1 - sz$
@@ -201,6 +201,8 @@ end
 **Answers:**
 
 -  Sine and cosine - analyze separately
+
+
 
 ___________________________________________________________________________
 
