@@ -8,6 +8,10 @@ Good luck!
 
 ---
 
+
+
+##1.3 Basis functions
+
 **Question 1**: Repeat this exercise with the coordinates p and q set to (5, 9), (9, 5), (17, 9),
 
 (17, 121), (5, 1) and (125, 1) respectively. What do you observe?
@@ -70,9 +74,14 @@ $Inversion\space theorem: \space F(x) = F^{-1}_D(\hat F)(x) = \frac{1}{N}  \sum\
 
 
 
-***Amplitude A is given by:*** 
+***From Lecture 3, page 39, the Fourier spectrum is given by:***
 
-$A = max(\sqrt{R(z)^2 + Im(z)^2)}$ 
+- Fourier spectrum: $|F(u,v) |= \sqrt{􏰖Re^2(u,v)+Im^2(u,v)} $
+
+
+***Followingly, the amplitude A is given by:*** 
+
+- $A = max(\sqrt{R(u,v)^2 + Im(u,v)^2)}$ 
 
 
 
@@ -196,15 +205,23 @@ end
 
 ---
 
+
+
+##1.4 Linearity
+
 **Question 7**: Why are these Fourier spectra concentrated to the borders of the images? Can you give a mathematical interpretation? **Hint:** think of the frequencies in the source image and consider the resulting image as a Fourier transform applied to a 2D function. It might be easier to analyze each dimension separately!
 
 **Answers:**
 
--  Sine and cosine - analyze separately
+"To better understand the role of the logarithm function, see also Lab 0B ”Elementary image operations”."
+
+Discrete Fourier transformation in two dimensions - given in lecture 03, page 39:
+
+- $\hat F(u,v) = \frac{1}{\sqrt{MN}}  \sum\limits_{m=0}^{M-1}[ \sum\limits_{n=0}^{N-1}[f(m,n)e^{-2\pi i (\frac{mu}{M}+\frac{nv}{N})}]] \quad (1) $
 
 
 
-___________________________________________________________________________
+_________________________________________________________________________
 
  
 
