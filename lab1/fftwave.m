@@ -76,15 +76,9 @@ function fftwave(u, v, sz)
     title(sprintf('angle(F) (wavelength %f)', wavelength))
     
     
-    %% plot 3D of imaginary part of the spatial domain
+    %plot 3D of imaginary part of the spatial domain
     figure(2);
     surf(imag(F));
     colormap winter;
     title('imag(F) - 3D visualization')
-
-    %[X,Y] = meshgrid(0:0.5:20,1:20);
-    %Z = Y.*sin(X) - X.*cos(Y);
-    %Z = Y.*Fhat;
-    %surf(X,Y,Z)
-   
     

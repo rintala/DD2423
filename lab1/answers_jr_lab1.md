@@ -177,7 +177,7 @@ In the illustrations above, $u<=sz/2$ but $v>sz/2$ which means the position will
 
 ----
 
-**Question 6**: What is the purpose of the instructions following the question *What is done by these instructions?* in the code? 
+**Question 6**: What is the purpose of the instructions following the question *What is done by these instructions?* in the code?
 
 **Answers:**
 
@@ -235,11 +235,11 @@ We can thus split up (1) into its two constituting sums - due to the separabilit
 $$
 \hat F(u,v) = \frac{1}{\sqrt{MN}} \sum\limits_{n=57}^{72}[e^{-2\pi i (\frac{nv}{N})}\sum\limits_{m=0}^{M-1}[ e^{-2\pi i (\frac{mu}{M})}]]
 $$
-Now we simplify the expression, with the property of Kronecker delta function:
+Now we simplify the expression, with the property of Kronecker delta function - i.e. the Dirac distribution for discrete values (Lecture 4, page 27):
 $$
 \begin{align*}\delta(m) =
 \begin{cases}1, \quad if\space m = 0
-\\ 0, \quad if\space m \neq 1
+\\ 0, \quad if\space m \neq 0
 \end{cases}
 \end{align*}
 $$
@@ -259,9 +259,7 @@ Thus, the Fourier spectra for G will be concetrated to the upper border.
 
 The Fourier spectra for function F will be concetrated along the left border with the same logic (since G=F') i.e. since $\hat F(u,v)$ is a non-zero value as long as n=0 for F.
 
-<!-- insert some images -->
-
-
+![q7_1](/Users/jonathanrintala/Desktop/bildat18/labs/lab1/img_output/q7_1.png)
 
 ---
 
@@ -269,23 +267,21 @@ The Fourier spectra for function F will be concetrated along the left border wit
 
 **Answers:**
 
-The logarithm function will even out the distribution of the pixels, which allows the low dynamic ranges to become visible and in that allow for a more well balanced and more detailed image.
+The logarithm function will even out the distribution of the pixels, which means the difference between the lowest and highest frequencies will be reduced. This allows the low dynamic ranges to become visible and in that way allows for a more well balanced and more detailed image.
 
-<!-- add some more text here -->
+![q8](/Users/jonathanrintala/Desktop/bildat18/labs/lab1/img/q8.png)
 
- 
+***Figure*** - illustration comparing Fhat and log(Fhat)
 
-___________________________________________________________________________
 
- 
 
-**Question 9**: What conclusions can be drawn regarding linearity? From your observations can you derive a mathematical expression in the general case?
+---
 
- 
+**Question 9**: What conclusions can be drawn regarding linearity? From your observations can you derive a mathematical expression in the general case? 
 
-Answers:
+**Answers:**
 
- 
+
 
 ___________________________________________________________________________
 
@@ -293,9 +289,7 @@ ___________________________________________________________________________
 
 **Question 10**: Are there any other ways to compute the last image? Remember what multiplication in Fourier domain equals to in the spatial domain! Perform these alternative computations in practice.
 
- 
-
-Answers:
+**Answers:**
 
  
 
@@ -305,9 +299,7 @@ ___________________________________________________________________________
 
 **Question 11**: What conclusions can be drawn from comparing the results with those in the previous exercise? See how the source images have changed and analyze the effects of scaling.
 
- 
-
-Answers:
+**Answers:**
 
  
 
