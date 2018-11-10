@@ -95,10 +95,41 @@ figure(5);
 subplot(2,1,1);
 
 showgrey(log(1 + abs(fftshift(Hhat_1))), 64, -pi, pi);
-title('(1 + abs(fftshift(Hhat_1)');
+title('1 + abs(fftshift(Hhat_1))');
 
 subplot(2,1,2);
-showgrey(1 + abs(fftshift(Hhat_2)), 64, -pi, pi);
+showgrey(log(1 + abs(fftshift(Hhat_2))), 64, -pi, pi);
 title('1 + abs(fftshift(Hhat_2))');
 
+%% Q10 - Convolution in Fourier domain <=> multiplication in spatial
+F = [ zeros(56, 128); ones(16, 128); zeros(56, 128)];
+G = F';
+sz = 128;
 
+%1. Looking at multiplication
+figure(6);
+subplot(2,2,1);
+showgrey(F.*G);
+title('(F .* G)')
+
+subplot(2,2,2)
+%showfs( FREQSPEC, RES, FOURSPECMAX) displays a compressed version
+%of the corresponding Fourier spectrum as a gray-level image.
+showfs(fft2(F.*G));
+title('fft2(F.*G)');
+
+%2. Looking at convolution
+Fhat = fft2(F);
+Ghat = fft2(G);
+
+%non-normalized
+subplot(2,2,3);
+showfs(conv2(Fhat,Ghat));
+title('conv2(Fhat,Ghat)');
+
+%normalized
+the_conv = conv2(Fhat, Ghat)/sz.^2;
+the_conv = the_conv(1:sz, 1:sz);
+subplot(2,2,4)
+showfs(the_conv);
+title('conv2(Fhat,Ghat)*1/sz.^2)');

@@ -67,7 +67,7 @@ Hhat = fft2(H);
 figure(4);
 subplot(2,1,1);
 surf(1 + abs(Fhat));
-title('Fhat')
+title('Fhat');
 
 subplot(2,1,2);
 surf((log(1 + abs(Fhat))));
@@ -76,7 +76,7 @@ title('log(Fhat)');
 sz = 128;
 amplitude = max(abs(Fhat(:)))/sz^2;
 
-%% Q9
+%% Q9 - Conclusions regarding linearity
 F = [ zeros(56, 128); ones(16, 128); zeros(56, 128)];
 G = F';
 H = F + 2 * G;
@@ -88,4 +88,39 @@ Ghat = fft2(G);
 Hhat_1 = fft2(H);
 
 %Hhat_2: computing the linear combination after Fourier transform 
-Hhat_2 = fft2()
+Hhat_2 = fft2(F) + 2*fft2(G);
+
+%Illustrate with Fhat and log(Fhat)
+figure(5);
+subplot(2,1,1);
+
+showgrey(log(1 + abs(fftshift(Hhat_1))), 64, -pi, pi);
+title('1 + abs(fftshift(Hhat_1))');
+
+subplot(2,1,2);
+showgrey(log(1 + abs(fftshift(Hhat_2))), 64, -pi, pi);
+title('1 + abs(fftshift(Hhat_2))');
+
+%% Q10 - Convolution in Fourier domain <=> multiplication in spatial
+F = [ zeros(56, 128); ones(16, 128); zeros(56, 128)];
+G = F';
+
+%1. Looking at multiplication
+figure(6);
+subplot(2,2,1);
+showgrey(F.*G);
+title('(F .* G)')
+
+subplot(2,2,2)
+%showfs( FREQSPEC, RES, FOURSPECMAX) displays a compressed version
+%of the corresponding Fourier spectrum as a gray-level image.
+showfs(fft2(F.*G));
+title('fft2(F.*G)');
+
+%2. Looking at convolution
+Fhat = fft2(F);
+Ghat = fft2(G);
+
+subplot(2,2,3);
+showfs(conv2(
+

@@ -277,7 +277,7 @@ The logarithm function will even out the distribution of the pixels, which means
 
 ---
 
-**Question 9**: What conclusions can be drawn regarding linearity? From your observations can you derive a mathematical expression in the general case? 
+**Question 9**: What conclusions can be drawn regarding linearity? From your observations can you derive a mathematical expression in the general case?
 
 **Answers:**
 
@@ -287,57 +287,70 @@ The conclusion regarding linearity that can be drawn, is the fact that the two i
 H = F + 2 * G;
 ```
 
-We can observe this visually by comparing the two different graphs when we have done the tranformation either before multiplication with 2 or after multiplication:
+We can observe this visually by comparing the two different graphs when we have done the tranformation either before multiplication with 2 or after multiplication i.e. Hhat_1 and Hhat_2:
 
-- 
+```matlab
+F = [ zeros(56, 128); ones(16, 128); zeros(56, 128)];
+G = F';
+H = F + 2 * G;
 
-___________________________________________________________________________
+Fhat = fft2(F);
+Ghat = fft2(G);
 
- 
+%Hhat_1: computing the linear combination before Fourier transform
+Hhat_1 = fft2(H);
 
-**Question 10**: Are there any other ways to compute the last image? Remember what multiplication in Fourier domain equals to in the spatial domain! Perform these alternative computations in practice.
+%Hhat_2: computing the linear combination after Fourier transform 
+Hhat_2 = fft2(F) + 2*fft2(G);
+```
+
+![q9_1](img/q9_1.png)
+
+- Mathematical expression in the general case:
+  $$
+  F(af_1(m,n) +bf_2(m,n)) = a \hat f_1(u,v)+ b\hat f_2(u,v) \\ => \\ af_1(m,n) +bf_2(m,n) =  F^{-1}(a\hat f_1(u,v) +b\hat f_2(u,v))
+  $$
+
+
+---
+
+**Question 10***: Are there any other ways to compute the last image? Remember what multiplication in Fourier domain equals to in the spatial domain! Perform these alternative computations in practice.
 
 **Answers:**
 
- 
+According to Theorem 2, Lecture 3, slide 31:
 
-___________________________________________________________________________
+*A convolution in the spatial domain is same as multiplication in the Fourier (frequency) domain.*
 
- 
+$F(h*f) = F(h) F(f)$
+
+To acquire the same results for the both, one must normalize the images in the frequency domain:
+
+![q10](img_output/q10.png)
+
+---
 
 **Question 11**: What conclusions can be drawn from comparing the results with those in the previous exercise? See how the source images have changed and analyze the effects of scaling.
 
 **Answers:**
 
- 
 
-___________________________________________________________________________
 
- 
+---
 
 **Question 12**: What can be said about possible similarities and differences? Hint: think of the frequencies and how they are affected by the rotation.
 
- 
+**Answers:**
 
-Answers:
 
- 
 
-___________________________________________________________________________
-
- 
+---
 
 **Question 13**: What information is contained in the phase and in the magnitude of the Fourier transform?
 
- 
+**Answers:**
 
-Answers:
-
- 
-
-___________________________________________________________________________
-
- 
+---
 
 **Question 14**: Show the impulse response and variance for the above-mentioned t-values. What are the variances of your discretized Gaussian kernel for t = 0.1, 0.3, 1.0, 10.0 and
 
@@ -349,9 +362,7 @@ Answers:
 
  
 
-___________________________________________________________________________
-
- 
+---
 
 **Question 15**: Are the results different from or similar to the estimated variance? How does the result correspond to the ideal continuous case? Lead: think of the relation between spatial and Fourier domains for different values of t.
 
