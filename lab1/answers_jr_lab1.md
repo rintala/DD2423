@@ -320,7 +320,9 @@ Hhat_2 = fft2(F) + 2*fft2(G);
 
 According to Theorem 2, Lecture 3, slide 31:
 
-*A convolution in the spatial domain is same as multiplication in the Fourier (frequency) domain.*
+*A convolution in the spatial domain is same as multiplication in the Fourier (frequency) domain.* 
+
+<!-- VICE VERSA? -->
 
 $F(h*f) = F(h) F(f)$
 
