@@ -281,7 +281,15 @@ The logarithm function will even out the distribution of the pixels, which means
 
 **Answers:**
 
+The conclusion regarding linearity that can be drawn, is the fact that the two images F and G can be combined either in the spatial or Fourier domain, the outcome of multiplying with a factor of two, will be achieved either way. Since, H becomes a linear combination of F and G according to:
 
+```matlab
+H = F + 2 * G;
+```
+
+We can observe this visually by comparing the two different graphs when we have done the tranformation either before multiplication with 2 or after multiplication:
+
+- 
 
 ___________________________________________________________________________
 
