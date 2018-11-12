@@ -343,7 +343,7 @@ cutoff_freqs = [0.3, 0.2, 0.1];
 figure
 for i = 1 : length(cutoff_freqs)
     subplot(3,1,i)
-    filtered_img = ideal(add, cutoff_freqs(i));
+    filtered_img = ideal (add, cutoff_freqs(i));
     showgrey(filtered_img)
     title(['Ideal filter - gaussnoise: cutoff_{freq} = ' num2str(cutoff_freqs(i))])
 end;
