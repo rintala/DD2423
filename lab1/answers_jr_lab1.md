@@ -161,7 +161,7 @@ This moves the default origin of the upper left corner, to instead having the ce
 This can be illustrated with the figures below:
 
 <div>
-    <img src="img/q5_original.png" height="300px"  />
+    <img src="img/q5_original.png" height="300px" />
 	<img src="img/q5_centered.png" height="300px" />
 </div>
 
@@ -353,11 +353,15 @@ Then, we look at the Fourier transforms and the convolution of these in the Four
 
 ---
 
-**Question 11**: What conclusions can be drawn from comparing the results with those in the previous exercise? See how the source images have changed and analyze the effects of scaling.
+**Question 11***: What conclusions can be drawn from comparing the results with those in the previous exercise? See how the source images have changed and analyze the effects of scaling.
 
 **Answers:**
 
+- Previous F: 128x128 with white square 
 
+  <!-- fill in more here -->
+
+![q11](img_output/q11.png)
 
 ---
 
@@ -373,13 +377,40 @@ Then, we look at the Fourier transforms and the convolution of these in the Four
 
 **Answers:**
 
+- The <u>magnitude</u> basically contains the information about the intensity of the image.
+- The <u>phase</u> contains information about the countours and edges.
+
+<!-- insert more info here about the functions used and matlab illustrations --> 
+
 ---
 
 **Question 14**: Show the impulse response and variance for the above-mentioned t-values. What are the variances of your discretized Gaussian kernel for t = 0.1, 0.3, 1.0, 10.0 and 100.0?
 
 **Answers:**
 
- 
+The impulse responses from the Gaussian kernel function (filter) are illustrated below:
+
+![q14_1](img_output/q14_1.png)
+
+***Figure 1 -*** Illustrating the impulse responses in 2D
+
+![q14_2](/Users/jonathanrintala/Desktop/bildat18/labs/lab1/img_output/q14_2.png)
+
+***Figure 2 -*** Illustrating the impulse responses in 3D
+
+| t     | covariance                                                   |
+| ----- | ------------------------------------------------------------ |
+| 0.1   | $\begin{bmatrix} 0.0133 & 0.0000 \\     0.0000 & 0.0133\\ \end{bmatrix}$ |
+| 0.3   | $\begin{bmatrix} 0.2811 & 0.0000 \\     0.0000 & 0.2811\\ \end{bmatrix}$ |
+| 1.0   | $\begin{bmatrix} 1.0000 & 0.0000 \\     0.0000 & 1.0000\\ \end{bmatrix}$ |
+| 10.0  | $\begin{bmatrix} 10.0000 & 0.0000 \\     0.0000 & 10.0000\\ \end{bmatrix}$ |
+| 100.0 | $\begin{bmatrix} 100.0000 & 0.0000 \\     0.0000 & 100.0000\\ \end{bmatrix}$ |
+
+Thus, we can see how a high t-value => "wide" impulse-response => high variance => i.e. a blurrier picture, with higher frequencies
+
+- tendency if we have a low value (below 1) to become non-gaussian
+
+
 
 ---
 
@@ -387,7 +418,17 @@ Then, we look at the Fourier transforms and the convolution of these in the Four
 
 **Answers:**
 
- 
+For values of $t<1$, such as 0.1 and 0.3, the results are different from the estimated variance. For higher values of t, the values we get are similar to the correct ones:
+
+| t     | abs diff variance                                            |
+| ----- | ------------------------------------------------------------ |
+| 0.1   | $\begin{bmatrix}0.0867032748238839 & 5.96379052957304*10^{-14}\\ 5.96379052957304*10^{-14}&0.0867032748231496 \end{bmatrix}$ |
+| 0.3   | $\begin{bmatrix}0.0189461699182294 &9.31508138947913*10^{-14}\\9.31508138947913*10^{-14}&0.0189461699172603 \end{bmatrix}$ |
+| 1.0   | $\begin{bmatrix}2.11231750313345*10^{-7} &1.15968813537873*10^{-14} \\ 1.15968813537873*10^{-14} &2.11231289681812*10^{-7}\end{bmatrix} $ |
+| 10.0  | $\begin{bmatrix}4.52615722679184*10^{-12}&1.21620265819178*10^{-14} \\1.21620265819178*10^{-14}&4.30944169238501e-12 \end{bmatrix}$ |
+| 100.0 | $\begin{bmatrix}5.60787455583522*10^{-7} & 9.51381657366261*10^{-14} \\ 9.51381657366261*10^{-14}&5.60787484005232*10^{-7} \end{bmatrix}$ |
+
+
 
 ___________________________________________________________________________
 

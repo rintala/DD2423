@@ -229,12 +229,17 @@ figure
 for i = 1 : length(t_values)
     subplot(3,2,i)
     psf = gaussfft(our_pic, t_values(i));
-    
-    %use if plotting freq domain
-    %psf = fftshift(psf);
+    psf = fftshift(psf);
     surf(psf)
     title(['t = ' num2str(t_values(i))])
     colormap winter;
+    
+    %variance comp
+    our_variance = variance(psf)
+    correct_val = discgaussfft(our_pic, t_values(i));
+    correct_variance = variance(correct_val);
+    diff = correct_variance - our_variance
+    
 end;
 
 figure
@@ -249,20 +254,3 @@ for i = 1 : length(t_values)
 end;
 
 %% Q.15
-
-t_values = [0.1, 0.3, 1.0, 10.0, 100.0];
-our_pic = deltafcn(128, 128);
-
-for i = 1 : length(t_values)
-    subplot(3,2,i)
-    psf = gaussfft(our_pic, t_values(i));
-    
-    %variance evaluation - compare with "correct"
-    our_variance = variance(psf)
-    correct_val_disc = discgaussfft(our_pic, t_values(i));
-    correct_cont_variance = eye(2)
-    correct_disc_variance = variance(correct_val_disc);
-    diff_disc{i} = abs(correct_disc_variance - our_variance)
-    diff_cont{i} = abs(correct_cont_variance - our_variance)
-end;
-
