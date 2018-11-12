@@ -107,7 +107,6 @@ amplitude = max(abs(Fhat(:)))/sz^2;
 
 - $A = \frac{1}{\sqrt{128^2}}*1 = \frac{1}{128} $
 
-
 ---
 
 **Question 4**: How does the direction and length of the sine wave depend on p and q? Write down the explicit expression that can be found in the lecture notes. Complement the code (variable wavelength) accordingly.
@@ -229,7 +228,7 @@ f(m,n) =
 \end{cases}
 \end{align*}
 $$
- 
+
 
 We can thus split up (1) into its two constituting sums - due to the separability property *(Property I - Lecture 4, page 9)*, which says a 2D DFT can be implemented as a series of 1D DFTs along each column followed by 1D DFTs along each row:
 $$
@@ -328,7 +327,29 @@ $F(h*f) = F(h) F(f)$
 
 To acquire the same results for the both, one must normalize the images in the frequency domain:
 
-![q10](img_output/q10.png)
+![q10_0_2](img_output/q10_0_2.png)
+
+***Figure 10.0*** - displays the normalizing of the convolution in the Fourier domain
+
+The point-wise matrix multiplication of $F.*G$ means only element combinations where 1*1 will yield a value of 1, everywhere else we will get zero, thus we get the spatial domain image that looks like a box:
+
+![q10_1](img_output/q10_1.png)
+
+***Figure 10.1*** - displays multiplication in the spatial domain
+
+![q10_0_1](/Users/jonathanrintala/Desktop/bildat18/labs/lab1/img_output/q10_0_1.png)
+
+***Figure 10.2*** - displays the Fourier transform of the spatial multiplication
+
+
+
+Then, we look at the Fourier transforms and the convolution of these in the Fourier domain:
+
+![q10_0_3](img_output/q10_0_3.png)
+
+***Figure 10.3*** - displays $\hat F$ and $\hat G$, along with the normalized convolution
+
+
 
 ---
 
@@ -340,7 +361,7 @@ To acquire the same results for the both, one must normalize the images in the f
 
 ---
 
-**Question 12**: What can be said about possible similarities and differences? Hint: think of the frequencies and how they are affected by the rotation.
+**Question 12**: What can be said about possible similarities and differences? **Hint:** think of the frequencies and how they are affected by the rotation.
 
 **Answers:**
 
@@ -354,13 +375,9 @@ To acquire the same results for the both, one must normalize the images in the f
 
 ---
 
-**Question 14**: Show the impulse response and variance for the above-mentioned t-values. What are the variances of your discretized Gaussian kernel for t = 0.1, 0.3, 1.0, 10.0 and
+**Question 14**: Show the impulse response and variance for the above-mentioned t-values. What are the variances of your discretized Gaussian kernel for t = 0.1, 0.3, 1.0, 10.0 and 100.0?
 
-100.0?
-
- 
-
-Answers:
+**Answers:**
 
  
 
@@ -368,33 +385,23 @@ Answers:
 
 **Question 15**: Are the results different from or similar to the estimated variance? How does the result correspond to the ideal continuous case? Lead: think of the relation between spatial and Fourier domains for different values of t.
 
- 
-
-Answers:
+**Answers:**
 
  
 
 ___________________________________________________________________________
-
- 
 
 **Question 16**: Convolve a couple of images with Gaussian functions of different variances (like t = 1.0, 4.0, 16.0, 64.0 and 256.0) and present your results. What effects can you observe?
 
- 
+**Answers:**
 
-Answers:
 
- 
 
-___________________________________________________________________________
-
- 
+---
 
 **Question 17**: What are the positive and negative effects for each type of filter? Describe what you observe and name the effects that you recognize. How do the results depend on the filter parameters? Illustrate with Matlab figure(s).
 
- 
-
-Answers:
+**Answers:**
 
  
 
@@ -404,9 +411,7 @@ ___________________________________________________________________________
 
 **Question 18**: What conclusions can you draw from comparing the results of the respective methods? 
 
- 
-
-Answers:
+**Answers:**
 
  
 
@@ -414,11 +419,9 @@ ___________________________________________________________________________
 
  
 
-**Question 19**: What effects do you observe when subsampling the original image and the smoothed variants? Illustrate both filters with the best results found for iteration i = 4.
+**Question 19**: What effects do you observe when subsampling the original image and the smoothed variants? Illustrate both filters with the best results found for iteration i = 4. 
 
- 
-
-Answers:
+**Answers:**
 
  
 
@@ -428,9 +431,7 @@ ___________________________________________________________________________
 
 **Question 20**: What conclusions can you draw regarding the effects of smoothing when combined with subsampling? Hint: think in terms of frequencies and side effects.
 
- 
-
-Answers:
+**Answers:**
 
  
 

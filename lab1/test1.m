@@ -133,3 +133,60 @@ the_conv = the_conv(1:sz, 1:sz);
 subplot(2,2,4)
 showfs(the_conv);
 title('conv2(Fhat,Ghat)*1/sz.^2)');
+
+%% Q.10.1 Illustration of point-wise multiplication F.*G
+F = [ zeros(56, 128); ones(16, 128); zeros(56, 128)];
+G = F';
+
+figure(7);
+
+%F and G
+subplot(1,3,1); showgrey(F); title('F')
+subplot(1,3,2); showgrey(G); title('G');
+
+%Point-wise multiplication result
+subplot(1,3,3); showgrey(F.*G); title('(F .* G)')
+
+%% Q.10.2 Illustration of Fhat and Ghat convolution in Fourier domain
+F = [ zeros(56, 128); ones(16, 128); zeros(56, 128)]; G = F';
+
+figure(8);
+
+%Fourier transform
+Fhat = fft2(F);
+Ghat = fft2(G);
+subplot(1,3,1);
+showfs(Fhat);
+title('Fhat')
+subplot(1,3,2);
+showfs(Ghat);
+title('Ghat')
+
+%Convolution - normalized
+the_conv = conv2(Fhat, Ghat)/sz.^2;
+the_conv = the_conv(1:sz, 1:sz);
+subplot(1,3,3)
+showfs(the_conv);
+title('conv2(Fhat,Ghat) - normalized');
+
+%% Q11
+Fnew = [zeros(60, 128); ones(8, 128); zeros(60, 128)] .* ...
+    [zeros(128, 48) ones(128, 32) zeros(128, 48)];
+
+F = [ zeros(56, 128); ones(16, 128); zeros(56, 128)];
+G = F';
+
+figure
+subplot(2,2,1)
+showgrey(F .* G);
+title('Old multiplication spatial')
+subplot(2,2,2)
+showfs(fft2(F .* G));
+title('Old multiplication Fourier')
+
+subplot(2,2,3)
+showgrey(Fnew)
+title('New multiplication spatial')
+subplot(2,2,4)
+showfs(fft2(Fnew))
+title('New multiplication Fourier')
