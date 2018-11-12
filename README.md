@@ -2,9 +2,9 @@
 
 Repo for my coursework in bildat18. The course consists of three labs.
 
-#### - [x] Lab 1: Filtering Operations
+- [ ] Lab 1: Filtering Operations
 
-#### - [ ] Lab 2: Edge Detection & Hough Transform
+- [ ] Lab 2: Edge Detection & Hough Transform
 
-#### - [ ] Lab 3: Object Segmentation
+- [ ] Lab 3: Object Segmentation
 
