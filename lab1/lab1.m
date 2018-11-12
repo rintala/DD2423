@@ -248,7 +248,9 @@ for i = 1 : length(t_values)
     title(['t = ' num2str(t_values(i))])
 end;
 
-%% Q.15
+%% Q.15 Variance analysis
+clear
+close all
 
 t_values = [0.1, 0.3, 1.0, 10.0, 100.0];
 our_pic = deltafcn(128, 128);
@@ -266,3 +268,91 @@ for i = 1 : length(t_values)
     diff_cont{i} = abs(correct_cont_variance - our_variance)
 end;
 
+%% Q.16
+%todo
+
+%% Q.17 Positive and negative effects for each type of filter
+clear
+close all
+
+%Load the image office256 from the image database of the course
+office = office256;
+
+%gaussian noise
+add = gaussnoise(office, 16);
+
+%salt and pepper noise
+sap = sapnoise(office, 0.1, 255);
+
+figure
+subplot(2,2,1);
+showgrey(add);
+title('org: add - gaussnoise')
+
+subplot(2,2,2);
+showgrey(sap);
+title('org: sap - sapnoise')
+
+t_values = [0.1, 0.3, 1.0, 10.0, 100.0];
+
+%----- 1. Gaussian smoothing --------------
+
+%1.1 On gaussnoise
+figure
+for i = 1 : length(t_values)
+    subplot(3,2,i)
+    psf = gaussfft(add, t_values(i));
+    showgrey(psf)
+    title(['Gaussian - gaussnoise: t = ' num2str(t_values(i))])
+end;
+
+%1.2 On sapnoise
+figure
+for i = 1 : length(t_values)
+    subplot(3,2,i)
+    psf = gaussfft(sap, t_values(i));
+    showgrey(psf)
+    title(['Gaussian - sapnoise: t = ' num2str(t_values(i))])
+end;
+%------------------------------------------
+
+%----------- 2. Median filter -----------------
+w_sizes = [4, 8, 10];
+%2.1 On gaussnoise
+figure
+for i = 1 : length(w_sizes)
+    subplot(3,1,i)
+    filtered_img = medfilt(add, w_sizes(i), w_sizes(i));
+    showgrey(filtered_img)
+    title(['Median filter - gaussnoise: w_{size} = ' num2str(w_sizes(i))])
+end;
+
+%2.2 On sapnoise
+figure
+for i = 1 : length(w_sizes)
+    subplot(3,1,i)
+    filtered_img = medfilt(sap, w_sizes(i), w_sizes(i));
+    showgrey(filtered_img)
+    title(['Median filter - sapnoise: w_{size} = ' num2str(w_sizes(i))])
+end;
+
+%----------- 3. Ideal filter -----------------
+cutoff_freqs = [0.3, 0.2, 0.1];
+
+%3.1 On gaussnoise
+figure
+for i = 1 : length(cutoff_freqs)
+    subplot(3,1,i)
+    filtered_img = ideal(add, cutoff_freqs(i));
+    showgrey(filtered_img)
+    title(['Ideal filter - gaussnoise: cutoff_{freq} = ' num2str(cutoff_freqs(i))])
+end;
+
+%3.2 On sapnoise
+figure
+for i = 1 : length(cutoff_freqs)
+    subplot(3,1,i)
+    filtered_img = ideal(sap, cutoff_freqs(i));
+    showgrey(filtered_img)
+    title(['Ideal filter - sapnoise: cutoff_{freq} = ' num2str(cutoff_freqs(i))])
+end;

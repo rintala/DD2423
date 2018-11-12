@@ -444,6 +444,8 @@ Where C is:
 
 ​	 $C(g(·,·;t)) = t \begin{bmatrix} 1&0\\0&1 \end{bmatrix}$
 
+Conclusion: smaller differences in variance f
+
 ___________________________________________________________________________
 
 **Question 16**: Convolve a couple of images with Gaussian functions of different variances (like t = 1.0, 4.0, 16.0, 64.0 and 256.0) and present your results. What effects can you observe?
@@ -458,7 +460,7 @@ ___________________________________________________________________________
 
 **Answers:**
 
- 
+
 
 ___________________________________________________________________________
 
