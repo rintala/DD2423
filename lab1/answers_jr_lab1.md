@@ -420,7 +420,7 @@ Thus, we can see how a high t-value => "wide" impulse-response => high variance 
 
 For values of $t<1$, such as 0.1 and 0.3, the results are different from the estimated variance. For higher values of t, the values we get are similar to the correct ones:
 
-| t     | abs diff variance                                            |
+| t     | abs diff variance (compared to discrete)                     |
 | ----- | ------------------------------------------------------------ |
 | 0.1   | $\begin{bmatrix}0.0867032748238839 & 5.96379052957304*10^{-14}\\ 5.96379052957304*10^{-14}&0.0867032748231496 \end{bmatrix}$ |
 | 0.3   | $\begin{bmatrix}0.0189461699182294 &9.31508138947913*10^{-14}\\9.31508138947913*10^{-14}&0.0189461699172603 \end{bmatrix}$ |
@@ -428,7 +428,21 @@ For values of $t<1$, such as 0.1 and 0.3, the results are different from the est
 | 10.0  | $\begin{bmatrix}4.52615722679184*10^{-12}&1.21620265819178*10^{-14} \\1.21620265819178*10^{-14}&4.30944169238501e-12 \end{bmatrix}$ |
 | 100.0 | $\begin{bmatrix}5.60787455583522*10^{-7} & 9.51381657366261*10^{-14} \\ 9.51381657366261*10^{-14}&5.60787484005232*10^{-7} \end{bmatrix}$ |
 
+***Figure 1 -*** Comparison of variance to built-in function $discgaussfft$
 
+| t     | abs diff variance (compared to continuous)                   |
+| ----- | ------------------------------------------------------------ |
+| 0.1   | $\begin{bmatrix}0.0867032748147737 & 1.95594111278971e-14\\1.95594111278971e-14 & 0.0867032748144079 \end{bmatrix}$ |
+| 0.3   | $\begin{bmatrix}0.0189461699106196&1.75961603661103e-15\\1.75961603661103e-15&0.0189461699102158\end{bmatrix}$ |
+| 1.0   | $\begin{bmatrix}2.11226521606989e-07&2.14436875313702e-15\\2.14436875313702e-15&2.11226405810727e-07\end{bmatrix} $ |
+| 10.0  | $\begin{bmatrix}1.28252963804698e-12&1.06791235017787e-15\\1.06791235017787e-15&1.38022926421399e-12 \end{bmatrix}$ |
+| 100.0 | $\begin{bmatrix}6.71770507665315e-07 &8.69911019992506e-17\\8.69911019992506e-17&6.71770095550528e-07 \end{bmatrix}$ |
+
+***Figure 2 -*** Comparison of variance to continous function C
+
+Where C is:
+
+​	 $C(g(·,·;t)) = t \begin{bmatrix} 1&0\\0&1 \end{bmatrix}$
 
 ___________________________________________________________________________
 
@@ -436,7 +450,7 @@ ___________________________________________________________________________
 
 **Answers:**
 
-
+<!-- to do --> 
 
 ---
 

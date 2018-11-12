@@ -260,7 +260,7 @@ for i = 1 : length(t_values)
     %variance evaluation - compare with "correct"
     our_variance = variance(psf)
     correct_val_disc = discgaussfft(our_pic, t_values(i));
-    correct_cont_variance = eye(2)
+    correct_cont_variance = t_values(i).*eye(2)
     correct_disc_variance = variance(correct_val_disc);
     diff_disc{i} = abs(correct_disc_variance - our_variance)
     diff_cont{i} = abs(correct_cont_variance - our_variance)
