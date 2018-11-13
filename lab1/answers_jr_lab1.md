@@ -212,7 +212,7 @@ end
 
 **Answers:**
 
-"To better understand the role of the logarithm function, see also Lab 0B ”Elementary image operations”."
+"To better understand the role of the logarithm function, see also Lab 0B ”Elementary image operations”." - **SINK FUNCTION**
 
 ***Discrete Fourier transformation in two dimensions*** - given in lecture 03, page 39:
 $$
@@ -268,6 +268,8 @@ The Fourier spectra for function F will be concetrated along the left border wit
 
 The logarithm function will even out the distribution of the pixels, which means the difference between the lowest and highest frequencies will be reduced. This allows the low dynamic ranges to become visible and in that way allows for a more well balanced and more detailed image.
 
+<!-- SINC FUNCTION IN ONE DIRECTION -->
+
 ![q8](/Users/jonathanrintala/Desktop/bildat18/labs/lab1/img/q8.png)
 
 ***Figure*** - illustration comparing Fhat and log(Fhat)
@@ -313,6 +315,10 @@ Hhat_2 = fft2(F) + 2*fft2(G);
 
 ---
 
+
+
+## 1.5 Multiplication
+
 **Question 10***: Are there any other ways to compute the last image? Remember what multiplication in Fourier domain equals to in the spatial domain! Perform these alternative computations in practice.
 
 **Answers:**
@@ -353,6 +359,10 @@ Then, we look at the Fourier transforms and the convolution of these in the Four
 
 ---
 
+
+
+## 1.6 Scaling
+
 **Question 11***: What conclusions can be drawn from comparing the results with those in the previous exercise? See how the source images have changed and analyze the effects of scaling.
 
 **Answers:**
@@ -365,13 +375,28 @@ Then, we look at the Fourier transforms and the convolution of these in the Four
 
 ---
 
+
+
+## 1.7 Rotation
+
 **Question 12**: What can be said about possible similarities and differences? **Hint:** think of the frequencies and how they are affected by the rotation.
 
 **Answers:**
 
-
+- **ROTATION: !! HAVE TO ROTATE THE FREQUENCY DOMAIN IN SAME WAY - A POINT IN FREQ DOMAIN REPRESENTS THE DIRECTION OF WHICH A SINE WAVE IN THE SPATIAL DOMAIN WILL BE**
+- IMPULSE RESPONSE ? 
+- FOR HUMAN GUASSSIAN FILTER LOOKS BETTER - FROM THEORY - HOW MUCH INFO 
+  - IDEAL LOW PASS FILTER - REMOVES ONLY WHAT HAS TO BE REMOVED
+    - hard cut off - rippling effect
+  - GAUSSIAN - ALSO SURPRESSES - NOT REALLY NECESSARY
+    - slow change if long -- => frequency
+    - frequency domain will be the opposite
 
 ---
+
+
+
+## 1.8 Information in Fourier phase and magnitude
 
 **Question 13**: What information is contained in the phase and in the magnitude of the Fourier transform?
 
@@ -383,6 +408,10 @@ Then, we look at the Fourier transforms and the convolution of these in the Four
 <!-- insert more info here about the functions used and matlab illustrations --> 
 
 ---
+
+
+
+## 2. Gaussian convolution implemented via FFT
 
 **Question 14**: Show the impulse response and variance for the above-mentioned t-values. What are the variances of your discretized Gaussian kernel for t = 0.1, 0.3, 1.0, 10.0 and 100.0?
 
@@ -444,7 +473,7 @@ Where C is:
 
 ​	 $C(g(·,·;t)) = t \begin{bmatrix} 1&0\\0&1 \end{bmatrix}$
 
-Conclusion: smaller differences in variance f
+<u>Conclusion:</u> smaller differences in variance for higher values of t
 
 ___________________________________________________________________________
 
@@ -452,9 +481,33 @@ ___________________________________________________________________________
 
 **Answers:**
 
-<!-- to do --> 
+The following images 1-3 were used:
+
+![q16_0](img_output/q16_0.png)
+
+***Figure 16.0*** - Original images that were used
+
+The results of convolutions with Gaussian functions of varying degree, letting $t = [1.0, 4.0, 16.0, 64.0, 256.0]$ can be seen below:
+
+![q16_1](img_output/q16_1.png)
+
+***Figure 16.1*** - Convolutions with different variances on image 1 ("few128")
+
+![q16_2](img_output/q16_2.png)
+
+***Figure 16.2*** - Convolutions with different variances on image 2 ("nallo128")
+
+![q16_3](img_output/q16_3.png)***Figure 16.3*** - Convolutions with different variances on image 3 ("phonecalc128")
+
+
+
+<u>Conclusion:</u> Increasing the variance input to the Gaussian function for convolution, seems to yield a much blurrier results, i.e. more and more of the higher frequencies of the image is being removed (surpressed).
 
 ---
+
+
+
+## 3. Smoothing
 
 **Question 17**: What are the positive and negative effects for each type of filter? Describe what you observe and name the effects that you recognize. How do the results depend on the filter parameters? Illustrate with Matlab figure(s).
 
@@ -464,13 +517,11 @@ ___________________________________________________________________________
 
 ___________________________________________________________________________
 
- 
-
 **Question 18**: What conclusions can you draw from comparing the results of the respective methods? 
 
 **Answers:**
 
- 
+
 
 ___________________________________________________________________________
 
@@ -480,7 +531,7 @@ ___________________________________________________________________________
 
 **Answers:**
 
- 
+
 
 ___________________________________________________________________________
 
@@ -490,7 +541,7 @@ ___________________________________________________________________________
 
 **Answers:**
 
- 
+- by frequencies
 
 ___________________________________________________________________________
 

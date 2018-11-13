@@ -268,8 +268,34 @@ for i = 1 : length(t_values)
     diff_cont{i} = abs(correct_cont_variance - our_variance)
 end;
 
-%% Q.16
-%todo
+%% Q.16 Convolve images w Guassian functions of different variances
+close
+clear all
+
+pics = cell(1,3);   
+pics{1} = few128;
+pics{2} = nallo128;
+pics{3} = phonecalc128;
+
+figure
+for i = 1 : size(pics,2)
+    subplot(1,3,i);
+    showgrey(pics{i})
+    title(['Img ' num2str(i) ' original']);
+end;
+
+t_values = [1.0, 4.0, 16.0, 64.0, 256.0];
+
+%for each image - plot all different convs (w. different variances t)
+for i = 1 : size(pics,2)
+    figure
+    for t = 1 : length(t_values)
+        subplot(2,3,t);
+        psf = gaussfft(pics{i}, t_values(t));
+        showgrey(psf)
+        title(['Img ' num2str(i) ' with t=' num2str(t_values(t))]);
+    end;
+end;
 
 %% Q.17 Positive and negative effects for each type of filter
 clear
