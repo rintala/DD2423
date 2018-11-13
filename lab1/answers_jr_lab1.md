@@ -543,19 +543,24 @@ The original images with added noise:
 
 
 
-<u>Conclusion:</u>
-
-- **Gaussian:** Increasing variance t of kernel generates a blurrier image, with less noise
-- **Median:** Increasing the window size => gets us a painting-like image
-- **Ideal low-pass:** decreasing the cut-off frequency => more of the frequency spectra is being cut-off from the picture => less details and noise
-
 ___________________________________________________________________________
 
 **Question 18**: What conclusions can you draw from comparing the results of the respective methods? 
 
 **Answers:**
 
+Take-aways from the compariosn of filtering methods:
 
+- **Gaussian:**
+  - Good performance on the add image (gauss noise)
+  - Increasing variance t of kernel generates a blurrier image, with less noise
+- **Median:**
+  - Best performance overall
+  - Removes noise of both types
+  - And preserves the edges
+- **Ideal low-pass:**
+  - Lacking performance on all pictures
+  - Removes high frequencies, and the lower the cut-off frequency, the more of the frequency spectra is being removed => less details and noise
 
 ___________________________________________________________________________
 
