@@ -513,7 +513,35 @@ The results of convolutions with Gaussian functions of varying degree, letting $
 
 **Answers:**
 
+Positive and negative effects for each type of filter:
 
+<!-- insert matrix here -->
+
+
+
+
+
+The original images with added noise:
+
+![q17_0](img_output/q17_0.png)
+
+***Figure 17.0*** - Original images with introduced noise
+
+![q17_gaussian_gauss](img_output/q17_gaussian_gauss.png)
+
+***Figure 17.1*** - Gaussian filter on gauss noise
+
+![q17_gaussian_sap](img_output/q17_gaussian_sap.png)
+
+***Figure 17.2*** - Gaussian filter on salt and pepper noise
+
+![q17_median](img_output/q17_median.png)
+
+***Figure 17.3*** - Median filter, altering window size, on both types of noise
+
+![q17_ideal](img_output/q17_ideal.png)
+
+***Figure 17.4*** - Ideal low-pass filter, altering cut-off frequency, on both types of noise
 
 ___________________________________________________________________________
 

@@ -347,16 +347,15 @@ w_sizes = [4, 8, 10];
 %2.1 On gaussnoise
 figure
 for i = 1 : length(w_sizes)
-    subplot(3,1,i)
+    subplot(2,3,i)
     filtered_img = medfilt(add, w_sizes(i), w_sizes(i));
     showgrey(filtered_img)
     title(['Median filter - gaussnoise: w_{size} = ' num2str(w_sizes(i))])
 end;
 
 %2.2 On sapnoise
-figure
 for i = 1 : length(w_sizes)
-    subplot(3,1,i)
+    subplot(2,3,i+length(w_sizes))
     filtered_img = medfilt(sap, w_sizes(i), w_sizes(i));
     showgrey(filtered_img)
     title(['Median filter - sapnoise: w_{size} = ' num2str(w_sizes(i))])
@@ -368,16 +367,16 @@ cutoff_freqs = [0.3, 0.2, 0.1];
 %3.1 On gaussnoise
 figure
 for i = 1 : length(cutoff_freqs)
-    subplot(3,1,i)
+    subplot(2,3,i)
     filtered_img = ideal (add, cutoff_freqs(i));
     showgrey(filtered_img)
     title(['Ideal filter - gaussnoise: cutoff_{freq} = ' num2str(cutoff_freqs(i))])
 end;
 
 %3.2 On sapnoise
-figure
+%figure
 for i = 1 : length(cutoff_freqs)
-    subplot(3,1,i)
+    subplot(2,3,i+length(cutoff_freqs))
     filtered_img = ideal(sap, cutoff_freqs(i));
     showgrey(filtered_img)
     title(['Ideal filter - sapnoise: cutoff_{freq} = ' num2str(cutoff_freqs(i))])
