@@ -254,9 +254,9 @@ $$
 
 This means, $\hat F(u,v)$ only is a non-zero value, as long as $m=0$, which implies $\delta(m) = 1$
 
-Thus, the Fourier spectra for G will be concetrated to the upper border.
+Thus, the Fourier spectra for G will be concentrated to the upper border.
 
-The Fourier spectra for function F will be concetrated along the left border with the same logic (since G=F') i.e. since $\hat F(u,v)$ is a non-zero value as long as n=0 for F.
+The Fourier spectra for function F will be concentrated along the left border with the same logic (since G=F') i.e. since $\hat F(u,v)$ is a non-zero value as long as n=0 for F.
 
 ![q7_1](/Users/jonathanrintala/Desktop/bildat18/labs/lab1/img_output/q7_1.png)
 
@@ -513,13 +513,11 @@ The results of convolutions with Gaussian functions of varying degree, letting $
 
 **Answers:**
 
-Positive and negative effects for each type of filter:
-
-<!-- insert matrix here -->
-
-
-
-
+|                              | +                                                            | -                                                            |
+| ---------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| **Gaussian smoothing**       | + Smooths the image<br />+ Handles Gaussian noise well       | - Does not preserve edges<br />- Does not handles sap noise well |
+| **Median filtering**         | + Preserves edges well<br />+ Handles both sap and gaussnoise well | - Non-distinct features get smoothened out<br />- Image looks like it's painted when window size is increased |
+| **Ideal low-pass filtering** | + Removes white noise from sap<br />+ Easy to apply          | - Could distort image and produce rippling effect<br />- Does not perform well on neither gauss nor sap noise |
 
 The original images with added noise:
 
@@ -542,6 +540,14 @@ The original images with added noise:
 ![q17_ideal](img_output/q17_ideal.png)
 
 ***Figure 17.4*** - Ideal low-pass filter, altering cut-off frequency, on both types of noise
+
+
+
+<u>Conclusion:</u>
+
+- **Gaussian:** Increasing variance t of kernel generates a blurrier image, with less noise
+- **Median:** Increasing the window size => gets us a painting-like image
+- **Ideal low-pass:** decreasing the cut-off frequency => more of the frequency spectra is being cut-off from the picture => less details and noise
 
 ___________________________________________________________________________
 
