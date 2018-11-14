@@ -21,14 +21,34 @@ Good luck!
 My observations are:
 
 - The placement of the dot determines the waves’ directions
-
 - Distance to origin (upper left corner) from dot, determines the frequency, i.e. a dot close to the origin will yield a lower frequency, which can be observed by waves with longer wavelength, than a dot far away **(if not a multi)**
-
 - Placing a dot on the x-axis yields vertical waves
-
 - Placing a dot on the y-axis yields horizontal waves i.e. (125,1) or (5,1) 
-
 - Placing a dot on other coordinates yields diagonal waves
+
+![q1_1_5_9](img_output/q1_1_5_9.png)
+
+***Figure 1.1*** - Point (5,9)
+
+![q1_1_9_5](img_output/q1_2_9_5.png)
+
+***Figure 1.2*** - Point (9,5)
+
+![q1_3_17_9](img_output/q1_3_17_9.png)
+
+***Figure 1.3*** - Point (17,9)
+
+![q1_4_17_121](img_output/q1_4_17_121.png)
+
+***Figure 1.4*** - Point (17,121)
+
+![q1_5_5_1](img_output/q1_5_5_1.png)
+
+***Figure 1.5*** - Point (5,1)
+
+![q1_6_125_1](img_output/q1_6_125_1.png)
+
+***Figure 1.6*** - Point (125,1)
 
 ---
 
@@ -44,8 +64,9 @@ $Inversion\space theorem: \space F(x) = F^{-1}_D(\hat F)(x) = \frac{1}{N}  \sum\
 
 <div style="text-align:left">
 <img src="img/1.png" height="200px"  />
-<img src="img/q3_imag_3D.png" height="350px" />
+<img src="img/q3_imag_3D.png" height="300px" />
 </div>
+
 ***Figures*** - Displaying the imaginary part of the projection of the Fourier domain position (5,1) => the spatial domain. Visualizations in 2D resp. 3D.
 
 
@@ -267,7 +288,7 @@ The logarithm function will even out the distribution of the pixels, which means
 
 ![q8](/Users/jonathanrintala/Desktop/bildat18/labs/lab1/img/q8.png)
 
-***Figure*** - illustration comparing Fhat and log(Fhat)
+***Figure 8.1*** - Illustration comparing Fhat and log(Fhat)
 
 
 
@@ -368,6 +389,8 @@ Then, we look at the Fourier transforms and the convolution of these in the Four
 
 ![q11](img_output/q11.png)
 
+***Figure 11.1*** - Illustration of how scaling affects the frequencyt domain
+
 ---
 
 
@@ -436,11 +459,11 @@ The impulse responses from the Gaussian kernel function (filter) are illustrated
 
 ![q14_1](img_output/q14_1.png)
 
-***Figure 1 -*** Illustrating the impulse responses in 2D
+***Figure 14.1 -*** Illustrating the impulse responses in 2D
 
 ![q14_2](/Users/jonathanrintala/Desktop/bildat18/labs/lab1/img_output/q14_2.png)
 
-***Figure 2 -*** Illustrating the impulse responses in 3D
+***Figure 14.2 -*** Illustrating the impulse responses in 3D
 
 | t     | covariance                                                   |
 | ----- | ------------------------------------------------------------ |
@@ -452,7 +475,7 @@ The impulse responses from the Gaussian kernel function (filter) are illustrated
 
 Thus, we can see how a high t-value => "wide" impulse-response => high variance => i.e. a blurrier picture, with higher frequencies
 
-- tendency if we have a low value (below 1) to become non-gaussian
+- There is a tendency, if we have a low t-value (below 1), for the distribution to become non-gaussian
 
 
 
