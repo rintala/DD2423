@@ -56,9 +56,13 @@ My observations are:
 
 **Answers:**
 
-$Inversion\space theorem: \space F(x) = F^{-1}_D(\hat F)(x) = \frac{1}{N}  \sum\limits_{u \in[0..N-1]^2}[\hat F(u)*e^{\frac{+2\pi iu^T x}N}] \quad(4)$
+- $Inversion\space theorem: \space F(x) = F^{-1}_D(\hat F)(x) = \frac{1}{N}  \sum\limits_{u \in[0..N-1]^2}[\hat F(u)*e^{\frac{+2\pi iu^T x}N}] \quad(4)$
 
-<!-- insert images here --> 
+- $Eulers \space formula:\space e^{iw^Tx} = e^{i(w_1x_1+w_2x_2)} = cos(w^Tx) + isin(w^Tx) \quad (5)$
+
+
+
+$ F(m,n) = \space {\{Euler's \space (5)\} = \\ \frac{1}{\sqrt{M}} \sum\limits_{m=0}^{M-1}[\frac{1}{\sqrt{N}}  \sum\limits_{n=0}^{N-1}[\hat F(u,v) cos(\frac{2\pi n v}{N} + \frac{2\pi m u}{M}) + isin(\frac{2\pi n v}{N} + \frac{2\pi m u}{M})]]]}\\  = \{u=p=5, v = q=1 \} = \\ \frac{1}{\sqrt{MN}} \sum\limits_{m=0}^{M-1}[  \sum\limits_{n=0}^{N-1}[\hat F(5,1) cos(\frac{2\pi n *1}{N} + \frac{2\pi m *5}{M}) + isin(\frac{2\pi n *1}{N} + \frac{2\pi m *5}{M})]]]$
 
 
 
@@ -67,7 +71,7 @@ $Inversion\space theorem: \space F(x) = F^{-1}_D(\hat F)(x) = \frac{1}{N}  \sum\
 <img src="img/q3_imag_3D.png" height="300px" />
 </div>
 
-***Figures*** - Displaying the imaginary part of the projection of the Fourier domain position (5,1) => the spatial domain. Visualizations in 2D resp. 3D.
+***Figure 2.1 & 2.2*** - Displaying the imaginary part of the projection of the Fourier domain position (5,1) => the spatial domain. Visualizations in 2D resp. 3D.
 
 
 
