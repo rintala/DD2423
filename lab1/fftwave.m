@@ -37,9 +37,9 @@ function fftwave(u, v, sz)
     %----- Q4 ----------------
     %WAVELENGTH lambda
     % Replace by correct expression
-    w_1 = sqrt(2*pi*uc)/sz;
-    w_2 = sqrt(2*pi*vc)/sz;
-    wavelength = 2*pi/(w_1^2+w_2^2);
+    w_1 = 2*pi*uc/sz;
+    w_2 = 2*pi*vc/sz;
+    wavelength = 2*pi/sqrt(w_1^2+w_2^2);
     %--------------------------
     
     %----- Q3 -----------------
@@ -49,7 +49,8 @@ function fftwave(u, v, sz)
         %as part of the computation
     %i.e. the factor *1/sz^2 = *1/128^2 at the end
     %max(abs(Fhat(:))) = 1/sz
-    amplitude = max(abs(Fhat(:)))/sz^2;
+    %amplitude = max(abs(Fhat(:)))/sz^2;
+    amplitude = max(abs(Fhat(:))/sz)
     %---------------------------
     
     subplot(3, 2, 2);
@@ -58,23 +59,26 @@ function fftwave(u, v, sz)
     
     shiftedFhat = fftshift(Fhat);
     %Add point in new center
-    shiftedFhat(sz/2+1,sz/2+1) = 1;
+    %shiftedFhat(sz/2+1,sz/2+1) = 1;
     showgrey(shiftedFhat);
-    
+  
     title(sprintf('centered Fhat: (uc, vc) = (%d, %d)', uc, vc))
+    
     subplot(3, 2, 3);
     showgrey(real(F), 64, -Fabsmax, Fabsmax);
     title('real(F)')
+    
     subplot(3, 2, 4);
     showgrey(imag(F), 64, -Fabsmax, Fabsmax);
     title('imag(F)')
+    
     subplot(3, 2, 5);
     showgrey(abs(F), 64, -Fabsmax, Fabsmax);
     title(sprintf('abs(F) (amplitude %f)', amplitude))
+    
     subplot(3, 2, 6);
     showgrey(angle(F), 64, -pi, pi);
     title(sprintf('angle(F) (wavelength %f)', wavelength))
-    
     
     %plot 3D of imaginary part of the spatial domain
     figure(2);

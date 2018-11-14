@@ -1,12 +1,14 @@
 %LAB 1 - Jonathan Rintala
 
 %% Q1 - Q6
+close
+clear all
 %p=5;q=9;
 %p=9;q=5;
 %p=17;q=9;
-p=17;q=121;
+%p=17;q=121;
 %p=5;q=1;
-%p=125;q=1;
+p=125;q=1;
 %--------------------------
 
 fftwave(p,q)

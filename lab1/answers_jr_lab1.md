@@ -21,10 +21,11 @@ Good luck!
 My observations are:
 
 - The placement of the dot determines the waves’ directions
-- Distance to origin (upper left corner) from dot, determines the frequency, i.e. a dot close to the origin will yield a lower frequency, which can be observed by waves with longer wavelength, than a dot far away **(if not a multi)**
+- Distance to origin (upper left corner) from dot, determines the frequency, i.e. a dot close to the origin will yield a lower frequency, which can be observed by waves with longer wavelength, than a dot far away
 - Placing a dot on the x-axis yields vertical waves
 - Placing a dot on the y-axis yields horizontal waves i.e. (125,1) or (5,1) 
 - Placing a dot on other coordinates yields diagonal waves
+- Same color => same frequency
 
 ![q1_1_5_9](img_output/q1_1_5_9.png)
 
@@ -61,14 +62,16 @@ My observations are:
 - $Eulers \space formula:\space e^{iw^Tx} = e^{i(w_1x_1+w_2x_2)} = cos(w^Tx) + isin(w^Tx) \quad (5)$
 
 
+$$
+F(m,n) =\space {\{Euler's \space (5)\} = \\ \frac{1}{\sqrt{M}} \sum\limits_{m=0}^{M-1}[\frac{1}{\sqrt{N}}  \sum\limits_{n=0}^{N-1}[\hat F(u,v) cos(\frac{2\pi n v}{N} + \frac{2\pi m u}{M}) + isin(\frac{2\pi n v}{N} + \frac{2\pi m u}{M})]]]}\\  = \{u=p=5, v = q=1 \} = \\ \frac{1}{\sqrt{MN}} \sum\limits_{m=0}^{M-1}[  \sum\limits_{n=0}^{N-1}[\hat F(5,1) cos(\frac{2\pi n *1}{N} + \frac{2\pi m *5}{M}) + isin(\frac{2\pi n *1}{N} + \frac{2\pi m *5}{M})]]]
+$$
 
-$ F(m,n) = \space {\{Euler's \space (5)\} = \\ \frac{1}{\sqrt{M}} \sum\limits_{m=0}^{M-1}[\frac{1}{\sqrt{N}}  \sum\limits_{n=0}^{N-1}[\hat F(u,v) cos(\frac{2\pi n v}{N} + \frac{2\pi m u}{M}) + isin(\frac{2\pi n v}{N} + \frac{2\pi m u}{M})]]]}\\  = \{u=p=5, v = q=1 \} = \\ \frac{1}{\sqrt{MN}} \sum\limits_{m=0}^{M-1}[  \sum\limits_{n=0}^{N-1}[\hat F(5,1) cos(\frac{2\pi n *1}{N} + \frac{2\pi m *5}{M}) + isin(\frac{2\pi n *1}{N} + \frac{2\pi m *5}{M})]]]$
 
 
 
 <div style="text-align:left">
 <img src="img/1.png" height="200px"  />
-<img src="img/q3_imag_3D.png" height="300px" />
+<img src="img/q3_imag_3D.png" height="250px" />
 </div>
 
 ***Figure 2.1 & 2.2*** - Displaying the imaginary part of the projection of the Fourier domain position (5,1) => the spatial domain. Visualizations in 2D resp. 3D.
@@ -116,10 +119,10 @@ $ F(m,n) = \space {\{Euler's \space (5)\} = \\ \frac{1}{\sqrt{M}} \sum\limits_{m
 ***Thus, implementation in Matlab:***
 
 ```matlab
-amplitude = max(abs(Fhat(:)))/sz^2;
+amplitude = max(abs(Fhat(:)))/sz;
 ```
 
-***Note:*** Matlab's ifft function includes a scaling factor of $1/M^2$ and we 
+***Note:*** Matlab might use some other scaling in the fft2 function 
 
 
 
