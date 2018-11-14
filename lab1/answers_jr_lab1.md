@@ -407,17 +407,9 @@ Then, we look at the Fourier transforms and the convolution of these in the Four
 
 **Question 12**: What can be said about possible similarities and differences? **Hint:** think of the frequencies and how they are affected by the rotation.
 
-**Answers:**
+**Answers:****
 
-- **ROTATION: !! HAVE TO ROTATE THE FREQUENCY DOMAIN IN SAME WAY - A POINT IN FREQ DOMAIN REPRESENTS THE DIRECTION OF WHICH A SINE WAVE IN THE SPATIAL DOMAIN WILL BE**
-- FOR HUMAN GUASSSIAN FILTER LOOKS BETTER - FROM THEORY - HOW MUCH INFO 
-  - IDEAL LOW PASS FILTER - REMOVES ONLY WHAT HAS TO BE REMOVED
-    - hard cut off - rippling effect
-  - GAUSSIAN - ALSO SURPRESSES - NOT REALLY NECESSARY
-    - slow change if long -- => frequency
-    - frequency domain will be the opposite
-
-When rotating the image in the spatial domain, the image representation in the Fourier domain rotates with it.
+When rotating the image in the spatial domain, the image representation in the Fourier domain rotates along with the image. The distance to the origin from the edges, are the same, thus the frequencies will have the same values. However, the direction of the waves changes. The vector from the origin to a given point, will determine the direction of the waves, and will rotate with the same angle for spatial and frequency domain. Some distortion can be seen both in spatial and Fourier domain, eventhough it appears to be clearer in the Fourier domain.
 
 ![q12_1](img_output/q12_1.png)
 
@@ -615,7 +607,7 @@ ___________________________________________________________________________
 
 **Answers:**
 
-Take-aways from the compariosn of filtering methods:
+Take-aways from the comparison of filtering methods:
 
 - **Gaussian:**
 
@@ -631,8 +623,13 @@ Take-aways from the compariosn of filtering methods:
 - **Ideal low-pass:**
 
   - Lacking performance on all pictures
-
   - Removes high frequencies, and the lower the cut-off frequency, the more of the frequency spectra is being removed => less details and noise
+
+
+
+<u>Conclusion:</u> The ideal low pass filter removes only what has to be removed, by cutting off at the right frequency. However, due to the rippling effect this result can be less pleasing for humans, eventhough it theoretically contains more information than for ex. Gaussian filter which ALSO surpresses high frequencies, which is not always necessary.
+
+
 
 ___________________________________________________________________________
 
@@ -666,7 +663,5 @@ When using $rawsubsample(image)$ we reduce the size of the image by a factor of 
 - By smoothing the image prior to the subsampling, more data can be preserved, i.e. we can prevent losing information from the image
 - Blurring image, reduces the frequency and reduces the Nyquist rate to better match the new subsampled image.
 - This method can be used to counteract aliasing.
-
-
 
 ___________________________________________________________________________
