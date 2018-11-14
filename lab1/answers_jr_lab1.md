@@ -387,17 +387,38 @@ Then, we look at the Fourier transforms and the convolution of these in the Four
 
 ## 1.6 Scaling
 
-**Question 11***: What conclusions can be drawn from comparing the results with those in the previous exercise? See how the source images have changed and analyze the effects of scaling.
+**Question 11**: What conclusions can be drawn from comparing the results with those in the previous exercise? See how the source images have changed and analyze the effects of scaling.
 
 **Answers:**
 
 - Previous F: 128x128 with white square 
-
-  <!-- fill in more here -->
+- General:
+  - Slow change in the direction which the bar is long => low frequency
+  - The frequency domain will be the opposite
 
 ![q11](img_output/q11.png)
 
-***Figure 11.1*** - Illustration of how scaling affects the frequencyt domain
+***Figure 11.1*** - Illustration of how scaling affects the frequency domain
+
+The initial image has a white box with the dimensions $16*16$.
+
+The new test image has a white box that is scaled and has the spatial domain measures $8*32$.
+
+Therefore, the relation between the two images in the spatial domain is:
+
+- $F_1(y,x) = F_2(2*y, 1/2*x)$
+
+Which gives us the following relation in the Fourier domain:
+
+- $\hat F_1(u,v) = \hat F_2(1/2*u, 2*v)$
+
+Thus, we multiply $y*2$, but instead get $u/2$. Whereas we divide $x/2$, and get $2*v$.
+
+And we can thus conclude:
+
+<u>Conclusion:</u> Compression in the spatial domain, is the same as expansion in the Fourier domain, and vice versa. 
+
+
 
 ---
 
@@ -407,7 +428,7 @@ Then, we look at the Fourier transforms and the convolution of these in the Four
 
 **Question 12**: What can be said about possible similarities and differences? **Hint:** think of the frequencies and how they are affected by the rotation.
 
-**Answers:****
+**Answers:**
 
 When rotating the image in the spatial domain, the image representation in the Fourier domain rotates along with the image. The distance to the origin from the edges, are the same, thus the frequencies will have the same values. However, the direction of the waves changes. The vector from the origin to a given point, will determine the direction of the waves, and will rotate with the same angle for spatial and frequency domain. Some distortion can be seen both in spatial and Fourier domain, eventhough it appears to be clearer in the Fourier domain.
 
@@ -659,9 +680,10 @@ ___________________________________________________________________________
 
 When using $rawsubsample(image)$ we reduce the size of the image by a factor of two in each dimension, i.e. by picking out every second pixel along each dimension.
 
-- **Subsampling:** "refers to sampling at a rate (either in space or time) that's lower than the Nyquist criterion would indicate. It usually follows some sort of low-pass or bandpass filter that reduces the information content of the original signal to a level appropriate for the new sample rate."
-- By smoothing the image prior to the subsampling, more data can be preserved, i.e. we can prevent losing information from the image
+- <u>Subsampling:</u> *"refers to sampling at a rate (either in space or time) that's lower than the Nyquist criterion would indicate. It usually follows some sort of low-pass or bandpass filter that reduces the information content of the original signal to a level appropriate for the new sample rate."*
+- By smoothing the image prior to the subsampling, more data can be preserved, i.e. we can prevent loosing information from the image
 - Blurring image, reduces the frequency and reduces the Nyquist rate to better match the new subsampled image.
 - This method can be used to counteract aliasing.
 
 ___________________________________________________________________________
+
