@@ -38,7 +38,7 @@ My observations are:
 
 $Inversion\space theorem: \space F(x) = F^{-1}_D(\hat F)(x) = \frac{1}{N}  \sum\limits_{u \in[0..N-1]^2}[\hat F(u)*e^{\frac{+2\pi iu^T x}N}] \quad(4)$
 
-<!-- insert image here --> 
+<!-- insert images here --> 
 
 
 
@@ -398,10 +398,29 @@ When rotating the image in the spatial domain, the image representation in the F
 
 **Answers:**
 
+![q13_1](img_output/q13_1.png)
+
+***Figure 13.1*** - Image 1 "few128"
+
+![q13_2](img_output/q13_2.png)
+
+***Figure 13.2*** - Image 2 "nallo128"
+
+![q13_3](img_output/q13_3.png)
+
+***Figure 13.3*** - Image 3 "phonecalc128"
+
+
+
+<u>Conclusion:</u>
+
 - The <u>magnitude</u> basically contains the information about the intensity of the image.
 - The <u>phase</u> contains information about the countours and edges.
+  - I.e. the position of the contours
 
-<!-- insert more info here about the functions used and matlab illustrations --> 
+We can see that with ***pow2image*** we still see the contours of the image, but the magnitude is not the same. This allows us to still identify the image, indicating that the phase is important for identifying the objects.
+
+For ***randphaseimage***, we cannot see any contours of the original image, but the magnitude is still the same, however in different positions. The ratio between bright and dark pixels is is thus still about the same, but without phase there is no information about where these pixels should be located => making it difficult for identifying the objects in the image.
 
 ---
 
@@ -467,7 +486,7 @@ For values of $t<1$, such as 0.1 and 0.3, the results are different from the est
 
 Where C is:
 
-	 $C(g(·,·;t)) = t \begin{bmatrix} 1&0\\0&1 \end{bmatrix}$
+$ C(g(·,·;t)) = t \begin{bmatrix} 1&0\\0&1 \end{bmatrix}$ 
 
 <u>Conclusion:</u> smaller differences in variance for higher values of t
 
@@ -586,7 +605,7 @@ ___________________________________________________________________________
 
 ___________________________________________________________________________
 
- **Question 20**: What conclusions can you draw regarding the effects of smoothing when combined with subsampling? Hint: think in terms of frequencies and side effects.
+**Question 20**: What conclusions can you draw regarding the effects of smoothing when combined with subsampling? Hint: think in terms of frequencies and side effects.
 
 **Answers:**
 

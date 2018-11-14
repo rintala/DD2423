@@ -238,7 +238,29 @@ for a = 1 : length(alphas)
 end;
 
 %% Q.13 - look at info in phase vs. magnitude of Fourier transf
-%complete this with some examples showing the differences
+a = 10^-10;
+
+pics = cell(1,3);   
+pics{1} = few128;
+pics{2} = nallo128;
+pics{3} = phonecalc128;
+
+
+for i = 1 : size(pics,2)
+    figure
+    subplot(1,3,1)
+    showgrey(pics{i})
+    title(['Pic ' num2str(i) ' - original']);
+    
+    subplot(1,3,2)
+    showgrey(pow2image(pics{i},a))
+    title(['Pic ' num2str(i) ' - pow2image']);
+    
+    subplot(1,3,3)
+    showgrey(randphaseimage(pics{i}))
+    title(['Pic ' num2str(i) ' - randphaseimage']);
+    
+end;
 
 %% 2. GAUSSIAN CONVOLUTION IMPLEMENTED VIA FFT
 

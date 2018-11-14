@@ -205,113 +205,61 @@ showfs(fft2(F_new));
 title('Fourier: F_{new} multiplication')
 
 %% Q.12 - Rotation, varying angles look at original image and Fourier spectra, compare
+clear
+close all
+
 F = [zeros(60, 128); ones(8, 128); zeros(60, 128)] .* ...
     [zeros(128, 48) ones(128, 32) zeros(128, 48)];
 
-alphas = [0, 30, 45, 60, 90]
+alphas = [0, 30, 45, 60, 90];
+
 
 for a = 1 : length(alphas)
     figure
-    subplot(1,3,1);
-    F_rotated = rot(F, alpha);
-    showgrey(F_rotated);
-    title(['Spatial - alpha ='num2str(alphas[a])]);
     
-    subplot(1,3,2);
+    %Display rotated image in spatial domain
+    subplot(1,3,1)
+    F_rotated = rot(F, alphas(a));
+    showgrey(F_rotated);
+    title(['Spatial - alpha =' num2str(alphas(a))]);
+    
+    %Display discrete Fourier transform of rotated image
+    subplot(1,3,2)
     Fhat_rotated = fft2(F_rotated);
     showfs(Fhat_rotated);
-    title(['Fourier - alpha ='num2str(alphas[a])]);
+    title(['Fourier - alpha =' num2str(alphas(a))]);
     
-    subplot(1,3,3);
-    Fhat_rotated_back = rot(fftshift(Fhat_rotated), -alpha);
-    F_rotated_back = log(1 + abs(Fhat_rotated_back));
-    showgrey(F_rotated_back);
-    title(['Rotated bac - alpha ='num2str(alphas[a])]);
-
+    %Display the Fourier spectra rotated back in the Fourier domain
+    subplot(1,3,3)
+    Fhat_rotated_back = rot(fftshift(Fhat_rotated), -alphas(a));
+    Fhat_rotated_back_show = log(1 + abs(Fhat_rotated_back));
+    showgrey(Fhat_rotated_back_show);
+    title(['Rotated back - alpha =' num2str(alphas(a))]);
 end;
 
-figure
-subplot(5,3,1)
-showgrey(F)
-title('Alpha = 0 spatial')
-axis on
-subplot(5,3,2)
-showfs(fft2(F))
-title('Alpha = 0 Fourier')
-
-alpha = 30;
-subplot(5,3,4)
-G = rot(F, alpha);
-showgrey(G)
-title('Alpha = 30 spatial')
-axis on
-
-subplot(5,3,5)
-Ghat = fft2(G);
-showfs(Ghat)
-title('Alpha = 30 Fourier')
-
-Hhat = rot(fftshift(Ghat), -alpha);
-subplot(5,3,6)
-showgrey(log(1 + abs(Hhat)))
-title('Alpha = 30 reconstructed')
-
-
-alpha = 45;
-subplot(5,3,7)
-G = rot(F, alpha);
-showgrey(G)
-title('Alpha = 45 spatial')
-axis on
-
-subplot(5,3,8)
-Ghat = fft2(G);
-showfs(Ghat)
-title('Alpha = 45 Fourier')
-
-Hhat = rot(fftshift(Ghat), -alpha);
-subplot(5,3,9)
-showgrey(log(1 + abs(Hhat)))
-title('Alpha = 45 reconstructed')
-
-
-alpha = 60;
-subplot(5,3,10)
-G = rot(F, alpha);
-showgrey(G)
-title('Alpha = 60 spatial')
-axis on
-
-subplot(5,3,11)
-Ghat = fft2(G);
-showfs(Ghat)
-title('Alpha = 60 Fourier')
-
-Hhat = rot(fftshift(Ghat), -alpha);
-subplot(5,3,12)
-showgrey(log(1 + abs(Hhat)))
-title('Alpha = 60 reconstructed')
-
-
-alpha = 90;
-subplot(5,3,13)
-G = rot(F, alpha);
-showgrey(G)
-title('Alpha = 90 spatial')
-axis on
-
-subplot(5,3,14)
-Ghat = fft2(G);
-showfs(Ghat)
-title('Alpha = 90 Fourier')
-
-Hhat = rot(fftshift(Ghat), -alpha);
-subplot(5,3,15)
-showgrey(log(1 + abs(Hhat)))
-title('Alpha = 90 reconstructed')
-
 %% Q.13 - look at info in phase vs. magnitude of Fourier transf
-%complete this with some examples showing the differences
+a = 10^-10;
+
+pics = cell(1,3);   
+pics{1} = few128;
+pics{2} = nallo128;
+pics{3} = phonecalc128;
+
+
+for i = 1 : size(pics,2)
+    subplot(3,3,1)
+    showgrey(pics{i})
+    title(['Pic ' num2str(i) ' - original']);
+    
+    subplot(3,3,2)
+    showgrey(pow2image(pics{i},a))
+    title(['Pic ' num2str(i) ' - pow2image']);
+    
+    subplot(3,3,2)
+    showgrey(randphaseimage(pics{i},a))
+    title(['Pic ' num2str(i) ' - randphaseimage']);
+    
+end;
 
 %% 2. GAUSSIAN CONVOLUTION IMPLEMENTED VIA FFT
 
