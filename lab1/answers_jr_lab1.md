@@ -341,15 +341,17 @@ Hhat_2 = fft2(F) + 2*fft2(G);
 
 ## 1.5 Multiplication
 
-**Question 10***: Are there any other ways to compute the last image? Remember what multiplication in Fourier domain equals to in the spatial domain! Perform these alternative computations in practice.
+**Question 10**: Are there any other ways to compute the last image? Remember what multiplication in Fourier domain equals to in the spatial domain! Perform these alternative computations in practice.
 
 **Answers:**
 
 According to Theorem 2, Lecture 3, slide 31:
 
-*A convolution in the spatial domain is same as multiplication in the Fourier (frequency) domain.* 
+*A convolution in the spatial domain is the same as multiplication in the Fourier (frequency) domain.* 
 
-<!-- VICE VERSA? -->
+Vice versa is true as well.
+
+*A convolution in the Fourier domain, is the same as multiplication in the spatial domain.*
 
 $F(h*f) = F(h) F(f)$
 
@@ -377,7 +379,7 @@ Then, we look at the Fourier transforms and the convolution of these in the Four
 
 ***Figure 10.3*** - displays $\hat F$ and $\hat G$, along with the normalized convolution
 
-
+<u>Conclusion:</u> The two frequency domain representations are equivalent, which illustrates the validity of the theorem.
 
 ---
 
@@ -416,6 +418,26 @@ Then, we look at the Fourier transforms and the convolution of these in the Four
     - frequency domain will be the opposite
 
 When rotating the image in the spatial domain, the image representation in the Fourier domain rotates with it.
+
+![q12_1](img_output/q12_1.png)
+
+***Figure 12.1*** - Alpha 0
+
+![q12_2](img_output/q12_2.png)
+
+***Figure 12.2*** - Alpha 30
+
+![q12_3](img_output/q12_3.png)
+
+***Figure 12.3*** - Alpha 45
+
+![q12_4](img_output/q12_4.png)
+
+***Figure 12.4*** - Alpha 60
+
+![q12_5](img_output/q12_5.png)
+
+***Figure 12.5*** - Alpha 90
 
 ---
 
