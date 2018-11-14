@@ -38,7 +38,7 @@ My observations are:
 
 $Inversion\space theorem: \space F(x) = F^{-1}_D(\hat F)(x) = \frac{1}{N}  \sum\limits_{u \in[0..N-1]^2}[\hat F(u)*e^{\frac{+2\pi iu^T x}N}] \quad(4)$
 
-![../../../screenshots/Screenshot%202018-11-05%20at%2021.17.10.png](file://localhost/Users/jonathanrintala/Library/Group%20Containers/UBF8T346G9.Office/msoclip1/01/clip_image004.png)
+<!-- insert image here --> 
 
 
 
@@ -74,10 +74,9 @@ $Inversion\space theorem: \space F(x) = F^{-1}_D(\hat F)(x) = \frac{1}{N}  \sum\
 
 
 
-***From Lecture 3, page 39, the Fourier spectrum is given by:***
+***From Lecture 3  , page 39, the Fourier spectrum is given by:***
 
-- Fourier spectrum: $|F(u,v) |= \sqrt{􏰖Re^2(u,v)+Im^2(u,v)} $
-
+- Fourier spectrum: <img src="img/fourier_spectrum.png" height="30px" /> 
 
 ***Followingly, the amplitude A is given by:*** 
 
@@ -117,7 +116,7 @@ amplitude = max(abs(Fhat(:)))/sz^2;
 
 (2) Phase (angle) of the Fourier transformation, from lecture 03, page 25:
 
-​	$\phi(w_1,w_2) = tan^{−1} \frac{Im(w1,w2)}{Re(w1,w2)}$
+​	$ \phi(w_1,w_2) = tan^{−1} \frac{Im(w1,w2)}{Re(w1,w2)} $
 
 (5) Def. from lab description: $w_D = \frac{2*\pi*u}{N}$
 
@@ -132,13 +131,11 @@ amplitude = max(abs(Fhat(:)))/sz^2;
 
 - In MATLAB:
 
-  ```{matlab}
+  ```matlab
   w_1 = sqrt(2pi*uc)/sz;
   w_2 = sqrt(2pi*vc)/sz;
   wavelength = 2*pi/(w_1^2+w_2^2)
   ```
-
-
 
 ------
 
@@ -148,12 +145,12 @@ amplitude = max(abs(Fhat(:)))/sz^2;
 
 The Matlab fftshift works as explained by the help function:
 
-```{matlab}
+```matlab
 >> help fftshift
 	"fftshift Shift zero-frequency component to center of spectrum. /../ For matrices, fftshift(X) swaps the first and third quadrants and the second and fourth quadrants."
 ```
 
-This moves the default origin of the upper left corner, to instead having the center of the spectrum being the Fourier transform's center; which means we have to calculate the new position of the point **relative to** the new origin of the center. A point (p,q) that has passed the center i.e. having either $p > sz/2$ OR $q > sz/2$ will thus get its position according to:
+This moves the default origin of the upper left corner, to instead having the center of the spectrum being the Fourier transform's center; which means we have to calculate the new position of the point **relative to** the new origin of the center. A point (p,q) that has passed the center i.e. having either $p > sz/2$ OR $q > sz/2​$ will thus get its position according to:
 
 - $uc = u-1-sz$
 - $vc = v -1 - sz$
@@ -199,8 +196,6 @@ else
 	vc = v - 1 - sz;
 end
 ```
-
-
 
 ---
 
@@ -471,7 +466,7 @@ For values of $t<1$, such as 0.1 and 0.3, the results are different from the est
 
 Where C is:
 
-​	 $C(g(·,·;t)) = t \begin{bmatrix} 1&0\\0&1 \end{bmatrix}$
+	 $C(g(·,·;t)) = t \begin{bmatrix} 1&0\\0&1 \end{bmatrix}$
 
 <u>Conclusion:</u> smaller differences in variance for higher values of t
 
@@ -552,36 +547,55 @@ ___________________________________________________________________________
 Take-aways from the compariosn of filtering methods:
 
 - **Gaussian:**
+
   - Good performance on the add image (gauss noise)
   - Increasing variance t of kernel generates a blurrier image, with less noise
+
 - **Median:**
+
   - Best performance overall
   - Removes noise of both types
   - And preserves the edges
+
 - **Ideal low-pass:**
+
   - Lacking performance on all pictures
+
   - Removes high frequencies, and the lower the cut-off frequency, the more of the frequency spectra is being removed => less details and noise
 
 ___________________________________________________________________________
-
- 
 
 **Question 19**: What effects do you observe when subsampling the original image and the smoothed variants? Illustrate both filters with the best results found for iteration i = 4. 
 
 **Answers:**
 
+![q19_0](img_output/q19_0.png)
+
+***Figure 19.0*** - Original subsampled images
+
+![q19_1](img_output/q19_1.png)
+
+***Figure 19.1*** - Smoothened subsampled images with gaussian filter
+
+![q19_2](img_output/q19_2.png)
+
+***Figure 19.2*** - Smoothened subsampled images with ideal filter
+
 
 
 ___________________________________________________________________________
 
- 
-
-**Question 20**: What conclusions can you draw regarding the effects of smoothing when combined with subsampling? Hint: think in terms of frequencies and side effects.
+ **Question 20**: What conclusions can you draw regarding the effects of smoothing when combined with subsampling? Hint: think in terms of frequencies and side effects.
 
 **Answers:**
 
-- by frequencies
+When using $rawsubsample(image)$ we reduce the size of the image by a factor of two in each dimension, i.e. by picking out every second pixel along each dimension.
+
+- **Subsampling:** "refers to sampling at a rate (either in space or time) that's lower than the Nyquist criterion would indicate. It usually follows some sort of low-pass or bandpass filter that reduces the information content of the original signal to a level appropriate for the new sample rate."
+- By smoothing the image prior to the subsampling, more data can be preserved, i.e. we can prevent losing information from the image
+- Blurring image, reduces the frequency and reduces the Nyquist rate to better match the new subsampled image.
+- This method can be used to counteract aliasing.
+
+
 
 ___________________________________________________________________________
-
- 

@@ -381,3 +381,42 @@ for i = 1 : length(cutoff_freqs)
     showgrey(filtered_img)
     title(['Ideal filter - sapnoise: cutoff_{freq} = ' num2str(cutoff_freqs(i))])
 end;
+
+%% Q.19 Effects when subsampling the org image and the smoothed variants
+
+%Using provided template
+img = phonecalc256;
+smooth_img = img;
+smooth_img_ideal = img;
+
+N=5;
+for i = 1:N
+    if i>1 %generate subsampled versions
+        %rawsubsample -- reduce image size by raw subsampling without presmoothing
+        
+            %rawsubsample(image) reduces the size of an image by a factor of two in
+            %each dimension by raw subsampling, i.e., by picking out every second
+            %pixel along each dimension.
+        
+        img = rawsubsample(img);
+        smooth_img = gaussfft(smooth_img, 1.1);
+        smooth_img = rawsubsample(smooth_img);
+        
+        smooth_img_ideal = ideal(smooth_img_ideal, 0.15);
+        smooth_img_ideal = rawsubsample(smooth_img_ideal);
+    end;
+    
+    subplot(3, N, i)
+    showgrey(img)
+    title('Original img');
+    
+    subplot(3, N, i+N)
+    showgrey(smooth_img)
+    title('Smooth img - guassian filter');
+    
+    subplot(3, N, i+2*N)
+    showgrey(smooth_img_ideal)
+    title('Smooth img - ideal filter');
+end;
+
+%% Q.20 Effects of smotthing when combined with subsampling
