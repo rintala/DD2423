@@ -207,7 +207,7 @@ end
 
 **Answers:**
 
-"To better understand the role of the logarithm function, see also Lab 0B ”Elementary image operations”." - **SINK FUNCTION**
+"To better understand the role of the logarithm function, see also Lab 0B ”Elementary image operations”." - **SINC FUNCTION**
 
 ***Discrete Fourier transformation in two dimensions*** - given in lecture 03, page 39:
 $$
@@ -379,13 +379,14 @@ Then, we look at the Fourier transforms and the convolution of these in the Four
 **Answers:**
 
 - **ROTATION: !! HAVE TO ROTATE THE FREQUENCY DOMAIN IN SAME WAY - A POINT IN FREQ DOMAIN REPRESENTS THE DIRECTION OF WHICH A SINE WAVE IN THE SPATIAL DOMAIN WILL BE**
-- IMPULSE RESPONSE ? 
 - FOR HUMAN GUASSSIAN FILTER LOOKS BETTER - FROM THEORY - HOW MUCH INFO 
   - IDEAL LOW PASS FILTER - REMOVES ONLY WHAT HAS TO BE REMOVED
     - hard cut off - rippling effect
   - GAUSSIAN - ALSO SURPRESSES - NOT REALLY NECESSARY
     - slow change if long -- => frequency
     - frequency domain will be the opposite
+
+When rotating the image in the spatial domain, the image representation in the Fourier domain rotates with it.
 
 ---
 

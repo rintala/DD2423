@@ -204,6 +204,39 @@ subplot(2,2,4)
 showfs(fft2(F_new));
 title('Fourier: F_{new} multiplication')
 
+%% Q.12 - Rotation, varying angles look at original image and Fourier spectra, compare
+clear
+close all
+
+F = [zeros(60, 128); ones(8, 128); zeros(60, 128)] .* ...
+    [zeros(128, 48) ones(128, 32) zeros(128, 48)];
+
+alphas = [0, 30, 45, 60, 90];
+
+
+for a = 1 : length(alphas)
+    figure
+    
+    %Display rotated image in spatial domain
+    subplot(1,3,1)
+    F_rotated = rot(F, alphas(a));
+    showgrey(F_rotated);
+    title(['Spatial - alpha =' num2str(alphas(a))]);
+    
+    %Display discrete Fourier transform of rotated image
+    subplot(1,3,2)
+    Fhat_rotated = fft2(F_rotated);
+    showfs(Fhat_rotated);
+    title(['Fourier - alpha =' num2str(alphas(a))]);
+    
+    %Display the Fourier spectra rotated back in the Fourier domain
+    subplot(1,3,3)
+    Fhat_rotated_back = rot(fftshift(Fhat_rotated), -alphas(a));
+    Fhat_rotated_back_show = log(1 + abs(Fhat_rotated_back));
+    showgrey(Fhat_rotated_back_show);
+    title(['Rotated back - alpha =' num2str(alphas(a))]);
+end;
+
 %% Q.13 - look at info in phase vs. magnitude of Fourier transf
 %complete this with some examples showing the differences
 
