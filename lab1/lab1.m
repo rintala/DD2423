@@ -13,9 +13,17 @@ fftwave(p,q)
 
 %% Q7 / 1.4 Linearity
 %Define F, G, H according to lab instructions
+close
+clear all
+
 F = [ zeros(56, 128); ones(16, 128); zeros(56, 128)];
 G = F';
 H = F + 2 * G;
+
+%Compute the discrete Fourier transforms of the images
+Fhat = fft2(F);
+Ghat = fft2(G);
+Hhat = fft2(H);
 
 %Display F, G, H with showgrey
 figure(3);
@@ -47,11 +55,6 @@ title('Hhat');
 subplot(4, 2, 7);
 showgrey(log(1 + abs(fftshift(Hhat))));
 title('fftshifted and log')
-
-%Compute the discrete Fourier transforms of the images
-Fhat = fft2(F);
-Ghat = fft2(G);
-Hhat = fft2(H);
 
 %% Q8 Why logarithm?
 

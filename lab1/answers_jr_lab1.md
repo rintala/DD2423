@@ -232,8 +232,6 @@ end
 
 **Answers:**
 
-"To better understand the role of the logarithm function, see also Lab 0B ”Elementary image operations”." - **SINC FUNCTION**
-
 ***Discrete Fourier transformation in two dimensions*** - given in lecture 03, page 39:
 $$
 \hat F(u,v) = \frac{1}{\sqrt{MN}}  \sum\limits_{m=0}^{M-1}[ \sum\limits_{n=0}^{N-1}[f(m,n)e^{-2\pi i (\frac{mu}{M}+\frac{nv}{N})}]] \quad (1)
@@ -274,6 +272,8 @@ $$
 
 This means, $\hat F(u,v)$ only is a non-zero value, as long as $m=0$, which implies $\delta(m) = 1$
 
+Here we have the ***sinc function*** * the dirac function.
+
 Thus, the Fourier spectra for G will be concentrated to the upper border.
 
 The Fourier spectra for function F will be concentrated along the left border with the same logic (since G=F') i.e. since $\hat F(u,v)$ is a non-zero value as long as n=0 for F.
@@ -288,11 +288,13 @@ The Fourier spectra for function F will be concentrated along the left border wi
 
 The logarithm function will even out the distribution of the pixels, which means the difference between the lowest and highest frequencies will be reduced. This allows the low dynamic ranges to become visible and in that way allows for a more well balanced and more detailed image.
 
-<!-- SINC FUNCTION IN ONE DIRECTION -->
+Sinc function plotted from the side, for Fhat resp the logarithm, where the lower frequencies are enhanced, since we use the logarithmic function for mapping values, where each pixel value is replaced by its logarithm. Low intensity pixel values are then enhanced, while high intensity values are compressed into a fairly small pixel range => thus, there is a risk of loosing some information in the high intensities.![log_curve](img/log_curve.png)
+
+***Figure 8.1*** - Logarithmic mapping curve
 
 ![q8](/Users/jonathanrintala/Desktop/bildat18/labs/lab1/img/q8.png)
 
-***Figure 8.1*** - Illustration comparing Fhat and log(Fhat)
+***Figure 8.2*** - Illustration comparing Fhat and log(Fhat)
 
 
 
