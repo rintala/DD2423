@@ -25,7 +25,7 @@ My observations are:
 - Placing a dot on the x-axis yields vertical waves
 - Placing a dot on the y-axis yields horizontal waves i.e. (125,1) or (5,1) 
 - Placing a dot on other coordinates yields diagonal waves
-- Same color => same frequency
+- Same color => same amplitude
 
 ![q1_1_5_9](img_output/q1_1_5_9.png)
 
@@ -205,7 +205,7 @@ In the illustrations above, $u<=sz/2$ but $v>sz/2$ which means the position will
 
 **Answers:**
 
-The purpose of the if-statements is to, as explained previously in question 5, calculate the position after the centering of Fhat's zero component (origin) to the center of the image, in order to get the correct relative position to the origin. We take -1, since the first element in the image matrix is retrieved by Fhat(1,1), and the origin should be in the very center of the image i.e. not $sz/2$, but rather $sz/2-1$.
+The purpose of the if-statements is to, as explained previously in question 5, calculate the position after the centering of Fhat's zero component (origin) to the center of the image, in order to get the correct relative position to the origin. We take -1, since the first Matlab centers around (0,0), and the positions are described in terms of having (1,1) as the first element of the matrix.
 
 ```matlab
 % What is done by these instructions?
@@ -291,7 +291,7 @@ The Fourier spectra for function F will be concentrated along the left border wi
 
 The logarithm function will even out the distribution of the pixels, which means the difference between the lowest and highest frequencies will be reduced. This allows the low dynamic ranges to become visible and in that way allows for a more well balanced and more detailed image.
 
-Sinc function plotted from the side, for Fhat resp the logarithm, where the lower frequencies are enhanced, since we use the logarithmic function for mapping values, where each pixel value is replaced by its logarithm. Low intensity pixel values are then enhanced, while high intensity values are compressed into a fairly small pixel range => thus, there is a risk of loosing some information in the high intensities.![log_curve](img/log_curve.png)
+Sinc function plotted from the side, for Fhat resp the logarithm, where the lower frequencies are enhanced, since we use the logarithmic function for mapping values, where each pixel value is replaced by its logarithm. Low frequencies are then enhanced, while high frequency values are compressed into a fairly small pixel range => thus, there is a risk of loosing some information in the higher frequencies.![log_curve](img/log_curve.png)
 
 ***Figure 8.1*** - Logarithmic mapping curve
 

@@ -501,3 +501,12 @@ subplot(2,1,2);
 surf((1+abs(fftshift(fft2(F)))));
 title('Fhat')
 
+figure
+subplot(2,1,1);
+showgrey(G)
+title('G')
+
+subplot(2,1,2);
+
+showgrey((1+abs(fftshift(fft2(G)))));
+title('Ghat')
