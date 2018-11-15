@@ -127,6 +127,7 @@ title('(F .* G)')
 subplot(2,2,2)
 %showfs( FREQSPEC, RES, FOURSPECMAX) displays a compressed version
 %of the corresponding Fourier spectrum as a gray-level image.
+%surf(1+abs(fftshift(fft2(F.*G))));
 showfs(fft2(F.*G));
 title('fft2(F.*G)');
 
@@ -443,6 +444,7 @@ for i = 1 : length(cutoff_freqs)
 end;
 
 %% Q.19 Effects when subsampling the org image and the smoothed variants
+%Q.20 Effects of smoothing when combined with subsampling
 
 %Using provided template
 img = phonecalc256;
@@ -479,4 +481,23 @@ for i = 1:N
     title('Smooth img - ideal filter');
 end;
 
-%% Q.20 Effects of smotthing when combined with subsampling
+%% test
+F = [zeros(60, 128); ones(8, 128); zeros(60, 128)] .* ...
+    [zeros(128, 48) ones(128, 1) zeros(128, 79)];
+
+G = [zeros(60, 128); ones(8, 128); zeros(60, 128)] .* ...
+    [zeros(128, 48) ones(128, 4) zeros(128, 76)];
+
+H = [zeros(60, 128); ones(8, 128); zeros(60, 128)] .* ...
+    [zeros(128, 48) ones(128, 8) zeros(128, 72)];
+
+figure
+subplot(2,1,1);
+showgrey(F)
+title('F')
+
+subplot(2,1,2);
+
+surf((1+abs(fftshift(fft2(F)))));
+title('Fhat')
+

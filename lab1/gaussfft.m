@@ -8,7 +8,7 @@ function out = gaussfft(pic, t)
     %of the Gaussian function in the spatial domain
     %4steps
     
-    %1. Generate a fitler based on a sampled version of the Gaussian function
+    %1. Generate a filter based on a sampled version of the Gaussian function
     %gaussian kernel - start with sampling points
     [xdim, ydim] = size(pic);
     [x, y] = meshgrid(-xdim/2 : (xdim/2)-1, -ydim/2 : (ydim/2)-1);
