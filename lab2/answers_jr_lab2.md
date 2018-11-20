@@ -1,5 +1,4 @@
-# Answers to questions in Lab 2: Edge
-detection & Hough transform
+# Answers to questions in Lab 2: Edge detection & Hough transform
 
 **Name:** Jonathan Rintala                                                       					**Program:** TIEMM, MAIG
 
