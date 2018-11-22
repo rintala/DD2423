@@ -8,11 +8,7 @@
 
 Good luck!
 
- 
-
-___________________________________________________________________________
-
- 
+---
 
 **Question 1**: What do you expect the results to look like and why? Compare the size of *dxtools* with the size of *tools*. Why are these sizes different? 
 
