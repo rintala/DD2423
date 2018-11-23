@@ -10,17 +10,43 @@ Good luck!
 
 ---
 
+
+
+## 1. Difference operators
+
 **Question 1**: What do you expect the results to look like and why? Compare the size of *dxtools* with the size of *tools*. Why are these sizes different? 
 
- 
+**Answers:**
 
-Answers:
+*dxtools:* Will show fluctuations in derivative on x-axis. Thus, there would be more clear edges facing horizontally here. ===
 
- 
+*dytools:* Will show fluctuations in derivative on y-axis. Thus, there would be more clear edges facing vertically here. | | |
 
-___________________________________________________________________________
+Since we use the sobel operator, with the two 3x3 kernels:
 
- 
+![sobel_operator](img/sobel_operator.png)
+
+These two kernels are convolved with the image, and by we will thus get one approximation of the horizontal changes in derivative and one approx. of the vertical changes in derivative.
+
+Comparing the size of tools and dxtools:
+
+```{matlab}
+size(tools) = 256 256
+size(dx_tools) = 254 254
+```
+
+Thus, we loose 2x2 pixels in size, when convolving the image with the Sobel kernels. The reason being, we cannot compute the approx of derivative at the edges. Thus, we pass in the 'valid'-parameter into the conv2.
+
+```{matlab}
+help conv2
+/../
+'valid' - returns only those parts of the convolution that are computed without the zero-padded edges. 
+/../
+```
+
+
+
+---
 
 **Question 2**: Is it easy to find a threshold that results in thin edges? Explain why or why not! 
 
