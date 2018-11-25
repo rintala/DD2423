@@ -50,35 +50,53 @@ help conv2
 
 **Question 2**: Is it easy to find a threshold that results in thin edges? Explain why or why not! 
 
- 
+**Answers:**
 
-Answers:
+- We plot a few different thresholds to try to visually determine a reasonable threshold, that produces thin edges, and this gives as a farily good chance to find appropriate thresholds.
+- We also look at the histogram, with the different intensities represented and counts for them respectively, but no clear patterns, that can be used, are identified.
+- Appropriate thresholds are often "valleys" of the histogram plotting counts of the different intensities. However, our histograms doesn't show any such trends.
+- Adaptive thresholding could be an alternative - dividing the image into subimages, and using different thresholds for these => in order to get thin edges for all subimages, if they for example have uneven illumination accross the image.
+- Main issue: the edges are of varying sharpness/depth => produces a derivative with varying magnitude, thus if we have:
+  - Low threshold:
+    - Sharp edges are cut off earlier => become wider
+    - Local maxima due to noise
+  - High threshold:
+    - Mild edges might fade or break
 
- 
+![high_low_threshold](img/high_low_threshold.png)
+
+***Figure 2.1*** - Illustration of low and high thresholds on 
 
 ___________________________________________________________________________
-
- 
 
 **Question 3**: Does smoothing the image help to find edges? 
 
- 
+**Answers:**
 
-Answers:
+- To some extent smoothing/blurring definately helps, since it reduces all high freq noise, while preservning edges
+- We have to use a substantially lower threshold than before (about 1/10), since the frequencies are lowered (high frequencies surpressed since Gaussian is lowpass)
 
- 
+![q3_org](img/q3_org.png)
+
+***Figure 3.1*** - Original image, looking at various thresholds
+
+![q3_smooth](img/q3_smooth.png)
+
+***Figure 3.2*** - Gaussian blurred/smoothened image with sigma 2, looking at various thresholds
+
+![q3_smooth_highsigma](img/q3_smooth_highsigma.png)
+
+***Figure 3.3*** - Gaussian blurred/smoothened image with a high sigma of 7, looking at various threshold
+
+
 
 ___________________________________________________________________________
 
- 
+ **Question 4**: What can you observe? Provide explanation based on the generated images. 
 
-**Question 4**: What can you observe? Provide explanation based on the generated images. 
+**Answers:**
 
- 
-
-Answers:
-
- 
+<!-- complete this --> 
 
 ___________________________________________________________________________
 
