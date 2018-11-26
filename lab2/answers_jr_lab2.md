@@ -18,9 +18,9 @@ Good luck!
 
 **Answers:**
 
-*dxtools:* Will show fluctuations in derivative on x-axis. Thus, there would be more clear edges facing horizontally here. ===
+*dxtools:* Will show fluctuations in derivative on x-axis. Thus, there would be more clear edges facing horizontally here. | | |
 
-*dytools:* Will show fluctuations in derivative on y-axis. Thus, there would be more clear edges facing vertically here. | | |
+*dytools:* Will show fluctuations in derivative on y-axis. Thus, there would be more clear edges facing vertically here. ===
 
 Since we use the sobel operator, with the two 3x3 kernels:
 
@@ -92,35 +92,63 @@ ___________________________________________________________________________
 
 ___________________________________________________________________________
 
- **Question 4**: What can you observe? Provide explanation based on the generated images. 
+**Question 4**: What can you observe? Provide explanation based on the generated images. 
 
 **Answers:**
 
-<!-- complete this --> 
+<!-- TODO: complete -->
+
+- Only look at magnitude for second and third derivative => therefore only look at denominator
+
+- Gradient magnitude
+  $$
+  L_v = \vert \nabla L\vert = \sqrt {L_x + L_y}
+  $$
+
+- Defining the edges as:
+  $$
+  \tilde L_{vv} = L_v^2L_{vv} = L^2_xL_{xx}+2L_xL_yL_{xy} +L_y^2L_{yy} = 0 \\
+  \tilde L_{vvv} = L_v^3L_{vvv} = L^2_xL_{xxx}+3L_x^2L_yL_{xxy} +3L_xL_y^2L_{xyy} +L_y^3L_{yyy} < 0
+  $$
+
+- Which will correspond to our two function files (Lvvtilde and Lvvvtilde)
+
+- Then we define masks that correpsond to the discrete derivative approx of all partial derivatives up to the order of three
+
+![q4_1](img/q4_1.png)
+
+***Figure 4.1*** - Lvv i.e. second order derivative of the smoothened intensity function L, on godthem256, varying sigmas
+
+**Conclusions:**
+
+
 
 ___________________________________________________________________________
-
- 
 
 **Question 5**: Assemble the results of the experiment above into an illustrative collage with the *subplot* command. Which are your observations and conclusions? 
 
- 
+**Answers:**
 
-Answers:
+*Effect of sign condition - 3rd order derivative in the gradient direction:*
 
- 
+- The white areas correspond to edges and pixels with Lvvv < 0 i.e. negative third order derivatives in the gradient direction
+- The result is images where we can see the contours fairly well, however they are not as clear as for the second derivative
+- Low scale/sigma value => detailed image, with lots of white, and black dots around the white contours
+- High scale/sigma value => smoothened image (blurry), where edges are wide, but are more emphasized if scale/sigma is not set too high
+
+![q4_2](/Users/jonathanrintala/Desktop/bildat18/labs/lab2/img/q4_2.png)
+
+***Figure 4.2*** - Lvvv i.e. third order derivative of the smoothened intensity function L, on few256, varying sigmas
+
+
 
 ___________________________________________________________________________
 
- 
-
 **Question 6**: How can you use the response from *Lvv* to detect edges, and how can you improve the result by using *Lvvv*? 
 
- 
+**Answers:**
 
-Answers:
 
- 
 
 ___________________________________________________________________________
 
@@ -128,9 +156,7 @@ ___________________________________________________________________________
 
 **Question 7**: Present your best results obtained with *extractedge* for *house* and *tools*. 
 
- 
-
-Answers:
+**Answers:**
 
  
 
@@ -140,9 +166,7 @@ ___________________________________________________________________________
 
 **Question 8**: Identify the correspondences between the strongest peaks in the accu-mulator and line segments in the output image. Doing so convince yourself that the implementation is correct. Summarize the results of in one or more figures. 
 
- 
-
-Answers:
+ **Answers:**
 
  
 
@@ -152,9 +176,7 @@ ___________________________________________________________________________
 
 **Question 9**: How do the results and computational time depend on the number of cells in the accumulator? 
 
- 
-
-Answers:
+ **Answers:**
 
  
 
@@ -164,9 +186,7 @@ ___________________________________________________________________________
 
 **Question 10**: How do you propose to do this? Try out a function that you would suggest and see if it improves the results. Does it?
 
- 
-
-Answers:
+ **Answers:**
 
  
 

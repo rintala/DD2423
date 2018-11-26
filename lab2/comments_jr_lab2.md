@@ -51,3 +51,6 @@ https://www.youtube.com/watch?v=4zHbI-fFIlI
 
 
 
+- **Calculating the gradient magnitude and direction:**
+  - https://www.youtube.com/watch?v=j7r3C-otk-U
+

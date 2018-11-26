@@ -94,7 +94,7 @@ showgrey(godthem)
 thresholds = [2, 6, 8, 12, 16, 20, 30, 40];
 %thresholds = [3, 6, 9, 13, 16, 21];
 
-%SMOOTHED IMAGE
+%SMOOTHENED IMAGE
 figure
 for t = 1 : length(thresholds)
     subplot(2,4,t)
@@ -108,4 +108,46 @@ for t = 1 : length(thresholds)
     subplot(2,4,t)
     showgrey((pixel - thresholds(t)) > 0)
     title(['org threshold (' num2str(thresholds(t)) ')'])
+end;
+
+%% Q4 - What can you observe - zero crossing of Lvv, varying scale
+
+%-------EXPERIMENTS--------
+house = godthem256;
+%initializing the sigma values (scale) we want to test
+scale = [0.0001, 1.0, 4.0, 16.0, 64.0];
+
+figure
+subplot(2,3,1)
+showgrey(house)
+title('org image')
+for s = 1 : length(scale)
+    subplot(2,3,s+1)
+    contour(Lvvtilde(discgaussfft(house,scale(s)), 'same'), [0,0])
+    axis('image')
+    axis('ij')
+    title(['Lvv scale (' num2str(scale(s)) ')'])
+end;
+
+%--------------------------
+%STUDY SIGN OF THIRD ORDER DERIVATIVE IN GRAIDENT DIRECTION
+%What can you observe? Effect of sign condition in this differential expr?
+
+tools = few256;
+
+
+
+%plot results
+figure
+subplot(2,3,1)
+showgrey(tools)
+title('org image')
+for s = 1 : length(scale)
+    subplot(2,3,s+1)
+    %try discgaussfft using different scales (sigmas)
+    convolved_gauss_image = discgaussfft(tools,scale(s));
+    showgrey(Lvvvtilde(convolved_gauss_image, 'same') < 0)
+    axis('image')
+    axis('ij')
+    title(['Lvvv scale (' num2str(scale(s)) ')'])
 end;

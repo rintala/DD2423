@@ -51,7 +51,7 @@ figure
 for t = 1 : length(thresholds)
     subplot(2,4,t)
     showgrey((gradmagntools - thresholds(t)) > 0)
-    title(['treshold (' num2str(thresholds(t)) ')'])
+    title(['threshold (' num2str(thresholds(t)) ')'])
 end;
 
 figure
@@ -78,9 +78,58 @@ xlabel('intensities')
 ylabel('count')
 
 %% Q3 - Does smoothing help in finding edges
-%Deploy smoothing through discgaussfft - then find edges
+%Idea: Deploy smoothing through discgaussfft - then find edges
 godthem = godthem256;
-smooth_godthem = discgaussfft(godthem, 1)
-figure
-showg
 
+%apply smoothing (gaussian blur) with specified variance (sigma)
+smooth_godthem = discgaussfft(godthem, 7)
+pixel = Lv(godthem, 'valid');
+pixel_smooth = Lv(smooth_godthem, 'valid');
+figure
+showgrey(smooth_godthem)
+figure
+showgrey(godthem)
+
+
+thresholds = [2, 6, 8, 12, 16, 20, 30, 40];
+%thresholds = [3, 6, 9, 13, 16, 21];
+
+%SMOOTHED IMAGE
+figure
+for t = 1 : length(thresholds)
+    subplot(2,4,t)
+    showgrey((pixel_smooth - thresholds(t)) > 0)
+    title(['smooth threshold (' num2str(thresholds(t)) ')'])
+end;
+
+%ORIGINAL IMAGE
+figure
+for t = 1 : length(thresholds)
+    subplot(2,4,t)
+    showgrey((pixel - thresholds(t)) > 0)
+    title(['org threshold (' num2str(thresholds(t)) ')'])
+end;
+
+%% Q4 - What can you observe - zero crossing of Lvv, varying scale
+
+%-------EXPERIMENTS--------
+house = godhthem256;
+%initializing the sigma values (scale) we want to test
+scale = [0.0001, 1.0, 4.0, 16.0, 64.0];
+
+figure
+contour(Lvvtilde(discgaussfft(house,scale(0), 'same'), [0,0]))
+axis('image')
+axis('ij')
+%--------------------------
+%STUDY SIGN OF THIRD ORDER DERIVATIVE IN GRAIDENT DIRECTION
+%What can you observe? Effect of sign condition in this differential expr?
+
+tools = few256;
+
+%try discgaussfft using different scales (sigmas)
+convolved_gauss_image = discgaussfft(tools,scale(0));
+
+%plot results
+figure
+showgrey(Lvvvtilde(convolved_gauss_image, 'same') < 0)

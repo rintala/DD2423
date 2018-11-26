@@ -1,4 +1,5 @@
 function pixels = Lvvtilde(inpic, shape)
+%complete - todo
 
 %define our mask - 5x5
 %first order
@@ -29,7 +30,7 @@ Lxx = filter2(dxxmask, inpic, shape);
 Lxy = filter2(dxymask, inpic, shape);
 Lyy = filter2(dyymask, inpic, shape);
 
-%Then we, finally, define our output (approx of gradient magnitude of img)
-pixels = Lx.^2.*Lxx + 2*Lx.*Lxy.*Ly + Ly.^2.*Lyy;
+%Then we, finally, define our output
+pixels = 
 
 end
