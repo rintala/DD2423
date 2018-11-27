@@ -1,5 +1,4 @@
 function pixels = Lvvtilde(inpic, shape)
-
 %define our mask - 5x5
 %first order
 dxmask = [0 0 0 0 0;

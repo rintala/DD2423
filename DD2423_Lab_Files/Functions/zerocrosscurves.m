@@ -8,7 +8,8 @@ function curves = zerocrosscurves(zero, mask)
 %
 % The format of these curves is the same as for CONTOURC
 
-[coordpairs dummy] = contours(zero, [0 0]);
+[coordpairs dummy] = contour(zero, [0 0],'edgecolor','none');
+
 
 if (nargin < 2) 
   curves = coordpairs;

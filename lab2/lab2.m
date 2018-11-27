@@ -1,6 +1,8 @@
 %LAB 2 - Jonathan Rintala
 
 %% Q1 - Compare size of dxtools and tools
+close
+clear all
 
 deltax = [1 0 -1; 2 0 -2; 1 0 -1];
 deltay = deltax';
@@ -129,13 +131,11 @@ for s = 1 : length(scale)
     title(['Lvv scale (' num2str(scale(s)) ')'])
 end;
 
-%--------------------------
-%STUDY SIGN OF THIRD ORDER DERIVATIVE IN GRAIDENT DIRECTION
+%% Q5 - Assemble results
+%STUDY SIGN OF THIRD ORDER DERIVATIVE IN GRADIENT DIRECTION
 %What can you observe? Effect of sign condition in this differential expr?
-
+scale = [0.0001, 1.0, 4.0, 16.0, 64.0];
 tools = few256;
-
-
 
 %plot results
 figure
@@ -151,3 +151,38 @@ for s = 1 : length(scale)
     axis('ij')
     title(['Lvvv scale (' num2str(scale(s)) ')'])
 end;
+
+%% Q7 - Present best results obtained with extractedge for house & tools
+
+thresholds = [2, 4, 8, 10, 12];
+scale = 4;
+
+%1.house
+house = godthem256;
+shape = 'same';
+figure
+subplot(2,3,1)
+showgrey(house)
+title('org image')
+
+for t = 1 : length(thresholds)
+    subplot(2,3,t+1)  
+    extractededge = extractedge(house, scale, thresholds(t), shape);
+    overlaycurves(house, extractededge)
+    title(['Lvvv thresholds (' num2str(thresholds(t)) '), scale ' num2str(scale)]) 
+end;
+
+%2 tools
+tools = few256;
+shape = 'same';
+figure
+subplot(2,3,1)
+showgrey(tools)
+title('org image')
+for t = 1 : length(thresholds)
+    subplot(2,3,t+1)  
+    extractededge = extractedge(tools, scale, thresholds(t), shape);
+    overlaycurves(tools, extractededge)
+    title(['Lvvv thresholds (' num2str(thresholds(t)) '), scale ' num2str(scale)']) 
+end;
+

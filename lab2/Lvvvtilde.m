@@ -43,7 +43,7 @@ Lxxy = filter2(dxxymask, inpic, shape);
 Lyyy = filter2(dyyymask, inpic, shape);
 
 %Then we, finally, define our output (approx of gradient magnitude of img)
-%according to expression of \tilde L on page 3 (lab description)
+%according to expression of \tilde L on page 3 (lab description)h
 pixels = Lx.^3.*Lxxx + 3.*Lx.^2.*Ly.*Lxxy + 3.*Lx.*Ly.^2.*Lxyy + Ly.^3.*Lyyy;
 
 end

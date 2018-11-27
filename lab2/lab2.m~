@@ -1,6 +1,8 @@
 %LAB 2 - Jonathan Rintala
 
 %% Q1 - Compare size of dxtools and tools
+close
+clear all
 
 deltax = [1 0 -1; 2 0 -2; 1 0 -1];
 deltay = deltax';
@@ -94,7 +96,7 @@ showgrey(godthem)
 thresholds = [2, 6, 8, 12, 16, 20, 30, 40];
 %thresholds = [3, 6, 9, 13, 16, 21];
 
-%SMOOTHED IMAGE
+%SMOOTHENED IMAGE
 figure
 for t = 1 : length(thresholds)
     subplot(2,4,t)
@@ -113,23 +115,74 @@ end;
 %% Q4 - What can you observe - zero crossing of Lvv, varying scale
 
 %-------EXPERIMENTS--------
-house = godhthem256;
+house = godthem256;
 %initializing the sigma values (scale) we want to test
 scale = [0.0001, 1.0, 4.0, 16.0, 64.0];
 
 figure
-contour(Lvvtilde(discgaussfft(house,scale(0), 'same'), [0,0]))
-axis('image')
-axis('ij')
-%--------------------------
-%STUDY SIGN OF THIRD ORDER DERIVATIVE IN GRAIDENT DIRECTION
+subplot(2,3,1)
+showgrey(house)
+title('org image')
+for s = 1 : length(scale)
+    subplot(2,3,s+1)
+    contour(Lvvtilde(discgaussfft(house,scale(s)), 'same'), [0,0])
+    axis('image')
+    axis('ij')
+    title(['Lvv scale (' num2str(scale(s)) ')'])
+end;
+
+%% Q5 - Assemble results
+%STUDY SIGN OF THIRD ORDER DERIVATIVE IN GRADIENT DIRECTION
 %What can you observe? Effect of sign condition in this differential expr?
-
+scale = [0.0001, 1.0, 4.0, 16.0, 64.0];
 tools = few256;
-
-%try discgaussfft using different scales (sigmas)
-convolved_gauss_image = discgaussfft(tools,scale(0));
 
 %plot results
 figure
-showgrey(Lvvvtilde(convolved_gauss_image, 'same') < 0)
+subplot(2,3,1)
+showgrey(tools)
+title('org image')
+for s = 1 : length(scale)
+    subplot(2,3,s+1)
+    %try discgaussfft using different scales (sigmas)
+    convolved_gauss_image = discgaussfft(tools,scale(s));
+    showgrey(Lvvvtilde(convolved_gauss_image, 'same') < 0)
+    axis('image')
+    axis('ij')
+    title(['Lvvv scale (' num2str(scale(s)) ')'])
+end;
+
+%% Q7 - Present best results obtained with extractedge for house & tools
+
+thresholds = [2, 4, 8, 10, 12];
+scale = 4;
+
+%1.house
+house = godthem256;
+shape = 'same';
+figure
+subplot(2,3,1)
+showgrey(house)
+title('org image')
+
+for t = 1 : length(thresholds)
+    subplot(2,3,t+1)  
+    extractededge = extractedge(house, scale, thresholds(t), shape);
+    overlaycurves(house, extractededge)
+    title(['Lvvv thresholds (' num2str(thresholds(t)) '), scale ' num2str(scale)]) 
+end;
+
+%2 tools
+tools = few256;
+shape = 'same';
+figure
+subplot(2,3,1)
+showgrey(tools)
+title('org image')
+for t = 1 : length(thresholds)
+    subplot(2,3,t+1)  
+    extractededge = extractedge(tools, scale, thresholds(t), shape);
+    overlaycurves(tools, extractededge)
+    title(['Lvvv thresholds (' num2str(thresholds(t)) '), scale ' num2str(scale)']) 
+end;
+

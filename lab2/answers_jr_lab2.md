@@ -26,7 +26,7 @@ Since we use the sobel operator, with the two 3x3 kernels:
 
 ![sobel_operator](img/sobel_operator.png)
 
-These two kernels are convolved with the image, and by we will thus get one approximation of the horizontal changes in derivative and one approx. of the vertical changes in derivative.
+These two kernels are convolved with the image, and by we will thus get one approximation of the horizontal changes in derivative and one approx. of the vertical changes in derivative. The sobel operator smoothens the image by some amount, hence it is less susceptibel to noise. Produces slightly thicker edges however - poorer edge localization. Roberts operator for instance, a bit thinner (better located) edges, could miss some edges - sensitive to noise.
 
 Comparing the size of tools and dxtools:
 
@@ -56,12 +56,12 @@ help conv2
 - We also look at the histogram, with the different intensities represented and counts for them respectively, but no clear patterns, that can be used, are identified.
 - Appropriate thresholds are often "valleys" of the histogram plotting counts of the different intensities. However, our histograms doesn't show any such trends.
 - Adaptive thresholding could be an alternative - dividing the image into subimages, and using different thresholds for these => in order to get thin edges for all subimages, if they for example have uneven illumination accross the image.
-- Main issue: the edges are of varying sharpness/depth => produces a derivative with varying magnitude, thus if we have:
+- Main issue: the edges are of varying sharpness/depth => produces a derivative with varying magnitude (i.e. edge strength varies), thus if we have:
   - Low threshold:
     - Sharp edges are cut off earlier => become wider
     - Local maxima due to noise
   - High threshold:
-    - Mild edges might fade or break
+    - Subtle edges might fade or break (become fragmented)
 
 ![high_low_threshold](img/high_low_threshold.png)
 
@@ -121,7 +121,7 @@ ___________________________________________________________________________
 
 **Conclusions:**
 
-
+A lot of lines, since there are many zero-crossings in the image, which means the second order derivative is shifting between negative and positive values, causing Lvv=0; not just where there are edges, but at other places as well. Smoothing the image => less of these zero-crossings. If we smoothen too much however, we loose detail and edges become distorted or do not follow the actual edges with precision.
 
 ___________________________________________________________________________
 
@@ -146,27 +146,46 @@ ___________________________________________________________________________
 
 **Question 6**: How can you use the response from *Lvv* to detect edges, and how can you improve the result by using *Lvvv*? 
 
+<!-- TODO: add illustration of edge with derivatives -->
+
 **Answers:**
+
+Both functions perform well on their own, but are not really perfect individually, since they only check one of the criteria for an edge each. When we combine the two functions, we enforce both criteria of an edge, and thus only show the pixels where these are fulfilled: which means Lv is a maximum when Lvv = 0, since also Lvvv should be negative. I.e. the gradient magnitude reaches a local max where both these criteria are met.
+
+<u>Conclusion:</u>
+
+- "No" incorrect edge detections are made, at least fewer such
 
 
 
 ___________________________________________________________________________
-
- 
 
 **Question 7**: Present your best results obtained with *extractedge* for *house* and *tools*. 
 
 **Answers:**
 
- 
+Afters some experimentation, testing different parameter values, the best results are obtained by:
+
+- <u>few256:</u> scale 4 and threshold 8
+- <u>godthem256:</u> scale 4 and threshold 4
+
+![q7_tools](img/q7_tools.png)
+
+***Figure 7.1*** - few256 with scale 4, varying threshold between 2 and 12
+
+
+
+![q7_house](img/q7_house.png)
+
+***Figure 7.2*** - godthem256 with scale 4, varying threshold between 2 and 12
+
+
 
 ___________________________________________________________________________
 
- 
+ **Question 8**: Identify the correspondences between the strongest peaks in the accu-mulator and line segments in the output image. Doing so convince yourself that the implementation is correct. Summarize the results of in one or more figures. 
 
-**Question 8**: Identify the correspondences between the strongest peaks in the accu-mulator and line segments in the output image. Doing so convince yourself that the implementation is correct. Summarize the results of in one or more figures. 
-
- **Answers:**
+**Answers:**
 
  
 

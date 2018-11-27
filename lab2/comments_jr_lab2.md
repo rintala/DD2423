@@ -35,7 +35,7 @@ https://www.youtube.com/watch?v=4zHbI-fFIlI
   - second order derivative being equal to zero 
   - the third order derivative being negative.
 
-- Introduce in each point a local coordinate system (u, v) such that the v direction is parallel to the gradient direction and the u direction is perpendicular to this. Then an edge can be defined as 
+- Introduce in each point a local coordinate system (u, v) such that the v direction is parallel to the gradient direction and the u direction is perpendicular to this. Then an edge can be defined as:
 
   􏰚 Lvv =0, Lvvv < 0
 
@@ -54,3 +54,27 @@ https://www.youtube.com/watch?v=4zHbI-fFIlI
 - **Calculating the gradient magnitude and direction:**
   - https://www.youtube.com/watch?v=j7r3C-otk-U
 
+
+
+- **Q6:**
+
+  - Why is noise not showing both the properties of Lvv=0 and Lvvv<0?
+    - Why does a change show both?
+
+- **Q7:**
+
+  - Essentially find best combo of scale and threshold
+
+    - What becomes problem with having too high threshold?
+
+- **Second order derivative methods:**
+
+  https://www.youtube.com/watch?v=aJc8p3Eh0pA
+
+  zero crossing of the second order derivative of a function indicates the presence of a maxima
+
+![second_order_der](img/second_order_der.png)
+
+- Laplacian
+- Mask 3x3
+  - very susceptible to noise, filtering required, use of Laplacian of Gaussian
