@@ -173,35 +173,45 @@ Afters some experimentation, testing different parameter values, the best result
 
 ***Figure 7.1*** - few256 with scale 4, varying threshold between 2 and 12
 
+![q7_zoomed](img/q7_zoomed.png)
 
+***Figure 7.2*** - few256 zoomed in
 
 ![q7_house](img/q7_house.png)
 
-***Figure 7.2*** - godthem256 with scale 4, varying threshold between 2 and 12
+***Figure 7.3*** - godthem256 with scale 4, varying threshold between 2 and 12
 
 
 
 ___________________________________________________________________________
 
- **Question 8**: Identify the correspondences between the strongest peaks in the accu-mulator and line segments in the output image. Doing so convince yourself that the implementation is correct. Summarize the results of in one or more figures. 
+**Question 8**: Identify the correspondences between the strongest peaks in the accumulator and line segments in the output image. Doing so convince yourself that the implementation is correct. Summarize the results of in one or more figures. 
+
+<!-- TODO: insert house examples & write figure titles -->
+
+**Answers:**
+
+![q8_1 copy](img/q8_1 copy.png)
+
+![q8_2](img/q8_2.png)
+
+![q8_3_full](img/q8_3_full.png)
+
+![q8_3_subsampled](img/q8_3_subsampled.png)
+
+
+
+___________________________________________________________________________
+
+**Question 9**: How do the results and computational time depend on the number of cells in the accumulator? 
 
 **Answers:**
 
  
 
-___________________________________________________________________________
 
- 
-
-**Question 9**: How do the results and computational time depend on the number of cells in the accumulator? 
-
- **Answers:**
-
- 
 
 ___________________________________________________________________________
-
- 
 
 **Question 10**: How do you propose to do this? Try out a function that you would suggest and see if it improves the results. Does it?
 

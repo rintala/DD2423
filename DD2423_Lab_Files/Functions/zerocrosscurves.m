@@ -10,7 +10,6 @@ function curves = zerocrosscurves(zero, mask)
 
 [coordpairs dummy] = contour(zero, [0 0],'edgecolor','none');
 
-
 if (nargin < 2) 
   curves = coordpairs;
 else

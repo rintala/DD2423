@@ -78,3 +78,16 @@ https://www.youtube.com/watch?v=4zHbI-fFIlI
 - Laplacian
 - Mask 3x3
   - very susceptible to noise, filtering required, use of Laplacian of Gaussian
+
+
+
+hough
+
+https://www.youtube.com/watch?v=ebfi7qOFLuo
+
+
+
+### q8 - we cap number of rhos for ex.
+
+- This means we will have to take the closest one, we dont always get a perpendicular one?
+- Problematic?

@@ -186,3 +186,52 @@ for t = 1 : length(thresholds)
     title(['Lvvv thresholds (' num2str(thresholds(t)) '), scale ' num2str(scale)']) 
 end;
 
+%% Q8 - Identify correspondence <-> strongest peaks in the accumulator & line segments
+close
+clear all
+testimage1 = triangle128;
+smalltest1 = binsubsample(testimage1)
+
+testimage2 = houghtest256;
+smalltest2 = binsubsample(binsubsample(testimage2));
+
+%Declare input params to houghedgeline
+img = binsubsample(godthem256);
+threshold = 12;
+scale = 1;
+
+nrho = 256;
+ntheta = 256;
+nlines = 20;
+verbose = 3;
+
+%Call houghedgeline
+[linepar, acc] = houghedgeline(img, scale, threshold,nrho, ntheta, nlines, verbose);
+
+%% Question 9
+few = few256;
+pic = few;
+
+threshold = 12;
+scale = 1;
+nlines = 5;
+verbose = 3;
+
+time = cputime;
+nrho = 150;
+ntheta = 150;
+[linepar, acc] = houghedgeline(pic, scale, threshold, nrho, ntheta,...
+                    nlines, verbose);
+time
+time = cputime;
+nrho = 1000;
+ntheta = 150;
+[linepar, acc] = houghedgeline(pic, scale, threshold, nrho, ntheta,...
+                    nlines, verbose);
+time
+time = cputime;
+nrho = 150;
+ntheta = 1000;
+[linepar, acc] = houghedgeline(pic, scale, threshold, nrho, ntheta,...
+                    nlines, verbose);
+time
