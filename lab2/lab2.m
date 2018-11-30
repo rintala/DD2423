@@ -174,8 +174,7 @@ end;
 
 %2 tools
 tools = few256;
-shape = 'same';
-figure
+shape = 'same'; figure
 subplot(2,3,1)
 showgrey(tools)
 title('org image')
@@ -196,42 +195,51 @@ testimage2 = houghtest256;
 smalltest2 = binsubsample(binsubsample(testimage2));
 
 %Declare input params to houghedgeline
-img = binsubsample(godthem256);
-threshold = 12;
-scale = 1;
+img = godthem256;
+thresh = 10;
+scale = 3;
 
 nrho = 256;
 ntheta = 256;
-nlines = 20;
-verbose = 3;
+nlines = 10;
+verbose = 0;
 
 %Call houghedgeline
-[linepar, acc] = houghedgeline(img, scale, threshold,nrho, ntheta, nlines, verbose);
+[linepar, acc] = houghedgeline(img, scale, thresh, nrho, ntheta, nlines, verbose);
 
-%% Question 9
+%% Q9 - How results and computational time depend on no of cells in accumulator
+close
+clear all
+
 few = few256;
-pic = few;
+godthem = godthem256;
+img = godthem;
 
-threshold = 12;
+thresh = 12;
 scale = 1;
-nlines = 5;
-verbose = 3;
+nlines = 8;
+verbose = 0;
 
-time = cputime;
-nrho = 150;
-ntheta = 150;
-[linepar, acc] = houghedgeline(pic, scale, threshold, nrho, ntheta,...
-                    nlines, verbose);
-time
-time = cputime;
-nrho = 1000;
-ntheta = 150;
-[linepar, acc] = houghedgeline(pic, scale, threshold, nrho, ntheta,...
-                    nlines, verbose);
-time
-time = cputime;
-nrho = 150;
-ntheta = 1000;
-[linepar, acc] = houghedgeline(pic, scale, threshold, nrho, ntheta,...
-                    nlines, verbose);
-time
+%------ TIME EQUALLY SMALL NO OF RHO AND THETA ------------------------
+time_1 = cputime;
+no_rho = 160;
+no_theta = 160;
+
+[linepar, acc] = houghedgeline(img, scale, thresh, no_rho, no_theta, nlines, verbose);
+time_1
+%----------------------------------------------------------
+
+%------ TIME LARGE NO OF RHO AND SMALL NO OF THETA ------------------------
+time_2 = cputime;
+no_rho = 1000;
+no_theta = 160;
+[linepar, acc] = houghedgeline(img, scale, thresh, no_rho, no_theta, nlines, verbose);
+time_2
+%----------------------------------------------------------
+
+%------ TIME SMALL NO OF RHO AND LARGE NO OF THETA ------------------------
+time_3 = cputime;
+no_rho = 1000;
+no_theta = 1000;
+[linepar, acc] = houghedgeline(img, scale, thresh, no_rho, no_theta, nlines, verbose);
+time_3

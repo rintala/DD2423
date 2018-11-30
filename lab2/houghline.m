@@ -5,7 +5,7 @@ function [linepar, acc] = houghline(curves, scale, nrho, ntheta, threshold, nlin
 acc = zeros(nrho, ntheta);
 
 %Define coordinate system: accumulator space
-thetax = linspace(-pi/2, pi/2, ntheta);
+theta_x = linspace(-pi/2, pi/2, ntheta);
 D = sqrt(size(scale, 1).^2 + size(scale, 2).^2)
 
 %Get the maxlen of the img
@@ -22,35 +22,34 @@ while ttrypointer < insize
     
     %Loop through the points on the edge curve - i.e. not ALL pixels
     for curveidx = 1:polylength 
-        x = curves(2, ttrypointer);
-        y = curves(1, ttrypointer);
+        x_coord = curves(2, ttrypointer);
+        y_coord = curves(1, ttrypointer);
         ttrypointer = ttrypointer + 1;
             
         %Look at tresh - ensure point is above
-        magn_xy = abs(scale(round(x), round(y)));
+        magn_xy = abs(scale(round(x_coord), round(y_coord)));
         if magn_xy > threshold
            
             %Loop over a set of theta vals - rotate around point
             for theta_index = 1:ntheta
                 %Determine rho, do it for each theta value - rho that is closest to
-                rho_val = x*cos(thetax(theta_index)) + y*sin(thetax(theta_index));
+                rho_val = x_coord*cos(theta_x(theta_index)) + y_coord*sin(theta_x(theta_index));
                 
                 %Compute index values in the accumulator space
                 rho_index = find(rhoy < rho_val, 1, 'last');
                 
-                %Upd the accumulator matrix - with the vote
+                %Upd. the accumulator matrix - with the vote
                 acc(rho_index, theta_index) = acc(rho_index, theta_index) + 1;
                 
-                % For Q.10
-                %acc(rho_index, theta_index) = acc(rho_index, theta_index) + log(magn);
-                %acc(rho_index, theta_index) = acc(rho_index, theta_index) + (magn).^3;
-                %acc(rho_index, theta_index) = acc(rho_index, theta_index) + magn;
+                %---------------------- Q.10 -----------------------------
+                %acc(rho_index, theta_index) = acc(rho_index, theta_index) + magn_xy;
+                %acc(rho_index, theta_index) = acc(rho_index, theta_index) + (magn_xy).^3;
+                %acc(rho_index, theta_index) = acc(rho_index, theta_index) + log(magn_xy);
+                %--------------------------------------------------------
             end
         end
     end
 end
-
-
 
 %Get maxima (local) from the accumulator matrix
 acctmp = acc;
@@ -59,20 +58,20 @@ acctmp = acc;
 nmaxima = size(value, 1);
 
 %--------------- Getting maximum points (whitest) from accumulator
-%line for each one of the strongest resp
+%Line for each one of the strongest resp
 nlines
 for index = 1:nlines
-    rhoindexacc = pos(indexvector(nmaxima - index + 1), 1);
-    thetaindexacc = pos(indexvector(nmaxima - index + 1), 2);
-    rho = rhoy(rhoindexacc);
-    theta = thetax(thetaindexacc);
+    rho_index_accumulator = pos(indexvector(nmaxima - index + 1), 1);
+    theta_index_accumulator = pos(indexvector(nmaxima - index + 1), 2);
+    rho = rhoy(rho_index_accumulator);
+    theta = theta_x(theta_index_accumulator);
     linepar(:,index) = [rho; theta];
     
     x0 = 0;
     y0 = (rho - x0 * cos(theta))./sin(theta);
     dx = D.^2;
     dy = (rho - dx * cos(theta))./sin(theta);
-  
+    
     %Given in lab description - visualizing results
     outcurves(1, 4*(index-1) + 1) = 0;          
     outcurves(2, 4*(index-1) + 1) = 3;
@@ -86,5 +85,4 @@ end
 
 %Return the output data
 linepar = outcurves;
-
 end

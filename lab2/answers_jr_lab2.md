@@ -26,7 +26,7 @@ Since we use the sobel operator, with the two 3x3 kernels:
 
 ![sobel_operator](img/sobel_operator.png)
 
-These two kernels are convolved with the image, and by we will thus get one approximation of the horizontal changes in derivative and one approx. of the vertical changes in derivative. The sobel operator smoothens the image by some amount, hence it is less susceptibel to noise. Produces slightly thicker edges however - poorer edge localization. Roberts operator for instance, a bit thinner (better located) edges, could miss some edges - sensitive to noise.
+These two kernels are convolved with the image, and by we will thus get one approximation of the horizontal changes in derivative and one approx. of the vertical changes in derivative. The sobel operator smoothens the image by some amount, hence it is less susceptibel to noise (and is isotropic). Produces slightly thicker edges however - poorer edge localization. Roberts operator for instance, a bit thinner (better located) edges, could miss some edges - sensitive to noise.
 
 Comparing the size of tools and dxtools:
 
@@ -96,8 +96,6 @@ ___________________________________________________________________________
 
 **Answers:**
 
-<!-- TODO: complete -->
-
 - Only look at magnitude for second and third derivative => therefore only look at denominator
 
 - Gradient magnitude
@@ -113,7 +111,7 @@ ___________________________________________________________________________
 
 - Which will correspond to our two function files (Lvvtilde and Lvvvtilde)
 
-- Then we define masks that correpsond to the discrete derivative approx of all partial derivatives up to the order of three
+- Then we define masks that correpsond to the discrete derivative approx of all partial derivatives up to the order of three.
 
 ![q4_1](img/q4_1.png)
 
@@ -146,7 +144,7 @@ ___________________________________________________________________________
 
 **Question 6**: How can you use the response from *Lvv* to detect edges, and how can you improve the result by using *Lvvv*? 
 
-<!-- TODO: add illustration of edge with derivatives -->
+![q6_illustration_derivatives](img/q6_illustration_derivatives.jpg)
 
 **Answers:**
 
@@ -154,7 +152,7 @@ Both functions perform well on their own, but are not really perfect individuall
 
 <u>Conclusion:</u>
 
-- "No" incorrect edge detections are made, at least fewer such
+- "No" incorrect edge detections x are made, at least fewer such.
 
 
 
@@ -164,7 +162,7 @@ ___________________________________________________________________________
 
 **Answers:**
 
-Afters some experimentation, testing different parameter values, the best results are obtained by:
+After some experimentation, testing different parameter values, the best results are obtained by:
 
 - <u>few256:</u> scale 4 and threshold 8
 - <u>godthem256:</u> scale 4 and threshold 4
@@ -187,19 +185,31 @@ ___________________________________________________________________________
 
 **Question 8**: Identify the correspondences between the strongest peaks in the accumulator and line segments in the output image. Doing so convince yourself that the implementation is correct. Summarize the results of in one or more figures. 
 
-<!-- TODO: insert house examples & write figure titles -->
-
 **Answers:**
 
 ![q8_1 copy](img/q8_1 copy.png)
 
-![q8_2](img/q8_2.png)
+![q8_2](img/q8_2_0.png)
+
+***Figure 8.1 and 8.2*** - Edge lines from Hough transform on geometrical shapes
+
+
+
+
 
 ![q8_3_full](img/q8_3_full.png)
 
 ![q8_3_subsampled](img/q8_3_subsampled.png)
 
+***Figure 8.3 and 8.4*** - Edge lines for few256 and subsampled few256
 
+Figure 8.3 and 8.4 shows us it's OK just to look at subset of image. There are still plenty of dots on a line, so edges will still be detected.
+
+![q8_house](img/q8_house.png)
+
+![q8_phonecalc](img/q8_phonecalc.png)
+
+***Figure 8.5 and 8.6*** - Displaying godthem256 and phonecalc256 with overlaycurves
 
 ___________________________________________________________________________
 
@@ -207,7 +217,26 @@ ___________________________________________________________________________
 
 **Answers:**
 
- 
+When running the computations for a few different numbers of thetas resp rhos, the results where:
+
+| ID   | No of $\theta$ | No of $\rho$ | Avg. time |
+| ---- | -------------- | ------------ | --------- |
+| I    | 160            | 160          | 4380.50ms |
+| II   | 160            | 1600         | 4384.08ms |
+| III  | 1600           | 160          | 4389.34ms |
+
+<u>Conclusion:</u>
+
+- The number of thetas affects the computational time to a higher extent, than the number of rhos.
+  - This, because we in each point has to look at lines for each different angle theta.
+- However, increasing eather of the parameters increase the computational time, since more computations have to be performed, as the matrix increases.
+  - Also, more lines around the distinct/sharp edges (localmax there)
+  - I.e. located in one part of the accumulator space
+- A high theta reflects in the pattern of edges detected; we detect many edges close to each other, because these gets the highest vote, and become slight variations of essentially the same edge. Thus, we get a better representation of edges in the image overall if these similar edges gets "grouped" to the same theta.
+  - In order, to us having to increase the number of lines in some sense, to include the sought after edges as well
+- When decreasing the number of cells i.e. params, we get:
+  - Faster computation time
+  - Less accurate direction of lines/edges OR placement if number of rhos is reduced
 
 
 
@@ -215,9 +244,25 @@ ___________________________________________________________________________
 
 **Question 10**: How do you propose to do this? Try out a function that you would suggest and see if it improves the results. Does it?
 
- **Answers:**
+**Answers:**
 
- 
+Basic idea is to introduce weight for vote, instead of just assuming a vote is worth 1. The weights are defined with a few different functions, all increasing, in order to weigh the votes according to the strength of magnitude of the gradient in that point.
+
+- voting(grad_magnitude) = log(grad_magnitude), gives us results that are close to the original case where we have voting(x) equal to 1
+
+  - Because of its properties, log will reduce the difference between high/low intensities or gradient magnitudes => which increases the chance of edges with lower values
+
+  ![q10_log](img/q10_log.png)
+
+  ***Figure 10.1*** - voting-function set to log(grad_magnitude)
+
+- In addition, the function voting(grad_magnitude) = grad_magnitude^3 is tested. However, it seems this function introduces too much weight on the strongest edges => and thus, since it doesn't overperform a uniform weight of 1, is not suitable.
+
+![q10_exp3](img/q10_exp3.png)
+
+***Figure 10.2*** - voting-function set to grad_magnitude^3
+
+
 
 ___________________________________________________________________________
 

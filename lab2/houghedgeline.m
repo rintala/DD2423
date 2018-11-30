@@ -3,11 +3,11 @@ curves = extractedge(img, scale, gradmagnthresh, 'same')
 magnitude = Lv(img, 'same')
 
 if verbose == 1
-    figure('name', 'overlaycurves: img + edge segments')
+    figure('overlay curves: img + edge segments')
     overlaycurves(img, curves);
-
-    figure('name', 'grad magnitude')
-    showgrey(magnitude);
+    
+    figure('grad magnitude')
+    overlaycurves(magnitude, curves);
 end
 
 [linepar, acc] = houghline(curves, magnitude, nrho, ntheta, gradmagnthresh, nlines, verbose);
@@ -32,7 +32,7 @@ if verbose == 1
     figure
     subplot(1,2,1)
     overlaycurves(img, curves)
-    title('Overlaycurves: Img and curves')
+    title('Overlay curves: Img and curves')
     subplot(1,2,2)
     showgrey(magnitude)
     title('Magnitude')

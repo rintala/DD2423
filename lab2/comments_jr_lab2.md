@@ -67,6 +67,10 @@ https://www.youtube.com/watch?v=4zHbI-fFIlI
 
     - What becomes problem with having too high threshold?
 
+    - THRESHOLD determines the lowest point which we include 
+
+    - i.e. from threshold and up!
+
 - **Second order derivative methods:**
 
   https://www.youtube.com/watch?v=aJc8p3Eh0pA
@@ -90,4 +94,16 @@ https://www.youtube.com/watch?v=ebfi7qOFLuo
 ### q8 - we cap number of rhos for ex.
 
 - This means we will have to take the closest one, we dont always get a perpendicular one?
+  - Yes. We put our vote on a slightly off line, the closest one, which represents the line through the dot, fairly ok
 - Problematic?
+  - Loose accuracy
+
+
+
+#### Q9 what happens when the number of ntheta ≠ nrho
+
+- What does this mean exactly?
+- This is now clarified:
+  - We have few thetas, but many rhos => we are able to correctly represent the angle, but not the distance rho, thus the placmenet will be wrong
+  - We have many thetas, but few rhos => we are able to correctly represent the distance but, not the angle theta, thus the angle will be slightly off, from the one we vote on
+
