@@ -14,11 +14,11 @@ Good luck!
 
 ## 2. K-means clustering
 
-**Question 1**: How did you initialize the clustering process and why do you believe this was a good method of doing it? 
+**Question 1**: How did you initialize the clustering process and why do you believe this was a good method of doing it?
 
 **Answers:**
 
-
+<!-- TODO: Answer -->
 
 ---
 
@@ -26,7 +26,7 @@ Good luck!
 
 **Answers:**
 
-
+<!-- TODO: Answer -->
 
 ---
 
@@ -34,17 +34,31 @@ Good luck!
 
 **Answers:**
 
+We can observe quite the substantial variation between the runs. However, when setting a K=8, i.e. having 8 centers of clusters, we can distinguish the two halves most of the times, since it, in those cases, doesn't exist any such superpixel that covers both halves, which gives the overly simplified interpretation of them belonging to the same segment/cluster.
+
+![q3_orange_1](img/q3_orange_1.png)
+
+***Fig. 3.1*** - K-means clustering with k=2 & k=3
+
+![q3_orange_2](img/q3_orange_2.png)
+
+***Fig. 3.2.*** - K-means clustering with k=7 & k=8
+
 
 
 ---
 
-**Question 4**: What needs to be changed in the parameters to get suitable superpixels for the tiger images as well? 
+**Question 4**: What needs to be changed in the parameters to get suitable superpixels for the tiger images as well?
 
 **Answers:**
 
-
+Tiger
 
 ---
+
+
+
+##3. Mean-shift segmentation
 
 **Question 5**: How do the results change depending on the bandwidths? What settings did you prefer for the different images? Illustrate with an example image with the parameter that you think are suitable for that image. 
 
