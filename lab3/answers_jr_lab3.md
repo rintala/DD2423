@@ -28,6 +28,10 @@ Good luck!
 
 <!-- TODO: Answer -->
 
+<!-- TODO: insert some table here of convergence comparison -->
+
+- Setting UNTIL_CONVERGENCE = TRUE
+
 ---
 
 **Question 3**: What is the minimum value for K that you can use and still get no superpixel that covers parts from both halves of the orange? Illustrate with a figure.
@@ -52,7 +56,7 @@ We can observe quite the substantial variation between the runs. However, when s
 
 **Answers:**
 
-Tiger
+It's evident the tiger images are of a more complex structure, with finer details and color variations. Followingly, we have to increase the amount of clusters to represent this more complex nature, as well as increase the number of iterations (L), in order to reach convergence.
 
 ---
 

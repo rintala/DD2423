@@ -1,4 +1,4 @@
-function [segmentation, centers] = kmeans_segm(image, K, L, seed, ERHAN, threshold)
+function [segmentation, centers, counter] = kmeans_segm(image, K, L, seed, UNTIL_CONV, threshold)
 %IDEA: Let X be a set of pixels and V be a set of K cluster centers in 3D (R,G,B).
     %1. Randomly initialize the K cluster centers
     %2. Compute all distances between pixels and cluster centers
@@ -39,8 +39,42 @@ V = [V_1, V_2, V_3];
 %2. Compute all distances between pixels and cluster centers
 distance = pdist2(X, V);
 
-%3. Iterate L times
-if ERHAN == true
+%3. Iterate L times if ERHAN is TRUE, otherwise until convergence
+if UNTIL_CONV == true
+    while (diff > threshold)
+        %4.  Assign each pixel to the cluster center for which the distance is min
+        Vtemp = double(zeros(K, 3));
+        count = double(zeros(K, 1));
+        for pix=1:img_x*img_y
+            kminimum(pix) = 1;
+            leastdistance = distance(pix, 1);
+            for k=2:K
+                if (distance(pix, k) < leastdistance)
+                    leastdistance = distance(pix, k);
+                    kminimum(pix) = k;
+                end
+            end
+
+            Vtemp(kminimum(pix), 1) = Vtemp(kminimum(pix), 1) + X(pix, 1);
+            Vtemp(kminimum(pix), 2) = Vtemp(kminimum(pix), 2) + X(pix, 2);
+            Vtemp(kminimum(pix), 3) = Vtemp(kminimum(pix), 3) + X(pix, 3);
+            count(kminimum(pix)) = count(kminimum(pix)) + 1;
+        end
+        %5. Recompute each cluster center by taking the mean of all pixels assigned to it
+        Vold = V;
+        for k=1:K
+            if (count(k) > 0)
+                V(k, 1) = Vtemp(k, 1) ./ count(k);
+                V(k, 2) = Vtemp(k, 2) ./ count(k);
+                V(k, 3) = Vtemp(k, 3) ./ count(k);
+            end
+        end
+        %6. Recompute all distances between pixels and cluster centers
+        diff = abs(max(Vold-V));
+        distance = pdist2(X,V);
+        counter = counter + 1;
+    end
+else
     for i = 1:L
         %4. Assign each pixel to the cluster center for which the distance is min
         Vtemp = double(zeros(K, 3));
@@ -72,43 +106,8 @@ if ERHAN == true
         %6. Recompute all distances between pixels and cluster centers
         distance = pdist2(X,V);
     end
-else
-    while (diff > threshold)
-        %4.  Assign each pixel to the cluster center for which the distance is min
-        Vtemp = double(zeros(K, 3));
-        count = double(zeros(K, 1));
-        for pix=1:img_x*img_y
-            kminimum(pix) = 1;
-            leastdistance = distance(pix, 1);
-            for k=2:K
-                if (distance(pix, k) < leastdistance)
-                    leastdistance = distance(pix, k);
-                    kminimum(pix) = k;
-                end
-            end
-
-            Vtemp(kminimum(pix), 1) = Vtemp(kminimum(pix), 1) + X(pix, 1);
-            Vtemp(kminimum(pix), 2) = Vtemp(kminimum(pix), 2) + X(pix, 2);
-            Vtemp(kminimum(pix), 3) = Vtemp(kminimum(pix), 3) + X(pix, 3);
-            count(kminimum(pix)) = count(kminimum(pix)) + 1;
-        end
-        %5. Recompute each cluster center by taking the mean of all pixels assigned to it
-        Vold = V;
-        for k=1:K
-            if (count(k) > 0)
-                V(k, 1) = Vtemp(k, 1) ./ count(k);
-                V(k, 2) = Vtemp(k, 2) ./ count(k);
-                V(k, 3) = Vtemp(k, 3) ./ count(k);
-            end
-        end
-        %6. Recompute all distances between pixels and cluster centers
-        diff = abs(max(Vold-V));
-        counter = counter + 1;
-        distance = pdist2(X,V);
-    end
 end
 
-%counter
 size(kminimum)
 Xnew = zeros(img_x*img_y, 1);
 for pix=1:img_x*img_y
