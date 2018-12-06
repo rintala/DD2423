@@ -23,20 +23,59 @@
 
 
 - **K-means**
+
   - not labeled training data - only data => split in three ex.
+
   - K determines how many splits we split it into
+
   - Number of K's dependent on situation (our image)
+
   - A certain K could lead to oversplitting in some situations, in others not
+
   - Run K-means a few times, with different starting positions => get better split
+
   - Sometimes instead of random - we pick to points
+
     - If we pick bad points => could be a problem
     - K-means ++
     - If randomization chooses point along same line, but further away, it will just take longer to converge
+
   - **General idea:** 
+
     - We have an initial guess on how to separate the data
     - We separate it 
     - Re-calculate centers of those regions
     - Repeat process - try to converge on a good separation
+
   - Move points into one of the two regions => recalculate the centers
+
   - Will tell us => which pixels belongs to what classes, but also what are the colors of those classes
+
   - IF we want to compress image - split into K-clusters - 16 - will pick those dominant colors
+
+
+- **Mean Shift Clustering**
+  - https://www.youtube.com/watch?v=Evc53OaDTFc
+  - Cluster: all data points in the attraction basin of a mode
+  - Attraction basin: the region for which all trajectories lead to the same mode
+
+  ![Screenshot 2018-12-05 at 23.05.40](img/Screenshot 2018-12-05 at 23.05.40.png)
+
+- Find features (color, gradients, texture, etc.)
+- Intialize windows at individual feature points (pixels)
+- Perform
+
+
+
+- Kernel is given by Gaussian function K(\hat x)
+
+- And the variance is given by a diagonal matrix D, with separate variances (bandwiths) for image position (spatial_bandwith) and for colours (color_bandwith)
+  $$
+  D = diag(\sigma^2_s,\sigma^2_s,\sigma^2_c,\sigma^2_c,\sigma^2_c)
+  $$
+
+
+
+
+
+

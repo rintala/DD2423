@@ -2,8 +2,16 @@ function segm = mean_shift_segm(I, spatial_bandwidth, colour_bandwidth, num_iter
 
 tic
 fprintf('Find colour channels with K-means...\n');
+
 K = 16;
-[ segm, centers ] = kmeans_segm(I, K, 10, 4321);
+L=10;
+seed = 4321;
+UNTIL_CONV = false;
+threshold = 0.01;
+
+%kmeans_segm(I_in, k, L, seed, false, threshold);
+
+[segm, centers, counter] = kmeans_segm(I, K, L, seed, UNTIL_CONV, threshold);
 toc
 
 centers(isnan(centers)) = 0.0;
