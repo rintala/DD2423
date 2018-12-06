@@ -90,11 +90,23 @@ It's evident the tiger images are of a more complex structure, with finer detail
 
 ***Fig 5.4*** - Tiger3 image with mean-shift segmentation applied, using suitable bandwidths
 
+
+
 ---
 
-**Question 6**: What kind of similarities and differences do you see between K-means and mean-shift segmentation? 
+**Question 6**: What kind of similarities and differences do you see between K-means and mean-shift segmentation?
 
 **Answers:**
+
+- *Differences:*
+  - K-means do not consider any spatial information, only colour info, meaning the position of the pixels, but mean-shift take this into account as well
+  - K-means needs a pre-specified number of clusters, whereas mean-shift will find a number of modes, but needs pre-specified bandwidth
+  - K-means has a high sensititivity to outliers, whereas mean-shift is less affected by them
+- *Similarities:*
+  - Both methods are iterative to their nature.
+    - K-means will update it's cluster center, according to the mean colour.
+    - Mean-shift will update it's position, according to where the maximum of local density is located.
+  - Both methods are used for segmenting images, and treat colour and pixels as samples from a prob. distrib.
 
 
 
