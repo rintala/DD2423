@@ -64,11 +64,31 @@ It's evident the tiger images are of a more complex structure, with finer detail
 
 ##3. Mean-shift segmentation
 
-**Question 5**: How do the results change depending on the bandwidths? What settings did you prefer for the different images? Illustrate with an example image with the parameter that you think are suitable for that image. 
+**Question 5**: How do the results change depending on the bandwidths? What settings did you prefer for the different images? Illustrate with an example image with the parameter that you think are suitable for that image.
 
 **Answers:**
 
+*The spatial bandwidth:* A high spatial variance/bandwidth means the unicolor areas will be larger. The number of modes and number of modes will decrease, as we increase the spatial bandwidth. The reason being, more pixels are included in the mean calculation, since our interest region is larger.
 
+*The colour bandwidth:* A high colour variance/bandwidth means the image will be smoothened to a higher degree. The bandwidth determines the radius for the colour space.
+
+![q5_orange_1](img/q5_orange_1.png)
+
+![q5_orange_2](img/q5_orange_2.png)
+
+***Fig. 5.1*** - Testing different colour bandwiths on the image of orange halves
+
+![q5_tiger1_1](img/q5_tiger1_1.png)
+
+***Fig 5.2*** - Tiger1 image with mean-shift segmentation applied, using suitable bandwidths
+
+![q5_tiger2_1](img/q5_tiger2_1.png)
+
+***Fig 5.3*** - Tiger2 image with mean-shift segmentation applied, using suitable bandwidths
+
+![q5_tiger3_1](img/q5_tiger3_1.png)
+
+***Fig 5.4*** - Tiger3 image with mean-shift segmentation applied, using suitable bandwidths
 
 ---
 

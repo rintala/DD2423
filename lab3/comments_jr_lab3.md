@@ -75,6 +75,18 @@
   $$
 
 
+  **Idea of mean-shift:**
+
+  - first create superpixels with k-means
+
+  - for each superpixel, do trajectory => then go towards its modes
+
+  - find the common modes for the superpixels
+
+- Increasing variance/bandwidth for color => will give surrounding colors more impact when deciding the color of the pixel - i.e. "more blurred"
+
+- Increasing variance/bandwith for position => will give surrounding pixel's colours more impact when deciding the color of the pixel
+
 
 
 
