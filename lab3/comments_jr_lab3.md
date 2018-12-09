@@ -89,5 +89,38 @@
 
 
 
+**4. Normalized Cut**
+
+
+
+
+
+**5. Graph cuts"**
+
+- https://www.youtube.com/watch?v=HMGX8HXskKk
+  - Foreground (source)
+  - Background (sink)
+  - Connect every pixel of the image (get a node) connect it to source, with probability of being foreground, and connect to sink, with the probability of being background
+
+- Use info from the descriptors
+- Connect every pixel to the source & sink
+- Then connect each pixel to its neighbours - left/right/maybe diagonals (4 or 8 neighbourhood) - with certain weight
+  - These weights should help us, and promotes pixels that are particularly proned to stay together (should promote similar pixels to stay together)
+  - Weights could be set, that are proportional to gradient, or such similar measures
+- When we have graph - we should partition that graph
+  - Cut foreground from weak nodes
+  - Cut background from weak nodes
+- **Cut**: separating source and sink
+  - Penalty: collection of edges
+- **Min cut**: 
+  - Global minimal energy in polynomial time
+- Go through edges that says that pixels should stay together, and cut the weak ones
+- Two step process:
+  - 1. Produce/construct the graph with image processing information
+    2. Cut the graph
+  - 
+
+
+
 
 

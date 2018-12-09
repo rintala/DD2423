@@ -108,13 +108,32 @@ It's evident the tiger images are of a more complex structure, with finer detail
     - Mean-shift will update it's position, according to where the maximum of local density is located.
   - Both methods are used for segmenting images, and treat colour and pixels as samples from a prob. distrib.
 
-
-
 ---
+
+
+
+## 4. Normalized Cut
 
 **Question 7**: Does the ideal parameter setting vary depending on the images? If you look at the images, can you see a reason why the ideal settings might differ? Illustrate with an example image with the parameters you prefer for that image.
 
 **Answers:**
+
+The ideal params definitely depend on the image they are applied to. The functionality/control that each of the parameters holds:
+
+- **ncuts_thresh** - Decides max cutting cost that we allow, which translates to how similar areas we allow to cut/separate. Larger value of ncuts_thresh means more similar areas will be OK to separate apart.
+- **min_area** - Sets min. limit on how small areas/segments are allowed.
+- **max_depth** - Sets the amount of recursive calls that are made i.e. the amount of cuts that will be made. If we increase max_depth, we will get more segments.
+
+- **color_bandwidth** - This param affects how similar pixels are weighted.
+  - Low bandwidth => large weights for similar pixels and low weigths for unsimilar pixels
+  - High bandwidth => flattening the Gaussian - decreasing the weight for similar pixels and increasing weight for unsimilar pixels => affects cost of cut and segmentation
+- **radius** - Decides the size of the neighbouring area of a pixel. A larger radius will include pixels even further away into account; this, however, increases time complexity.
+
+Key take-aways are:
+
+- If we reduce max_depth on images containing complex structures, we achieve bad results
+- If we get an image with lots of complexity, ncuts_thresh has to be increased - like for example the tiger vs. orange
+- Max_depth could be increased in order to increase the amount of cuts that will be made, however it was kept unchanged during these tests, and thus did not affect any 
 
 
 
@@ -143,6 +162,10 @@ It's evident the tiger images are of a more complex structure, with finer detail
 
 
 ---
+
+
+
+## 5. Segmentation using graph cuts
 
 **Question 11**: Does the ideal choice of *alpha* and *sigma* vary a lot between different images? Illustrate with an example image with the parameters you prefer.
 
