@@ -127,7 +127,7 @@ The ideal params definitely depend on the image they are applied to. The functio
 - **color_bandwidth** - This param affects how similar pixels are weighted.
   - Low bandwidth => large weights for similar pixels and low weigths for unsimilar pixels
   - High bandwidth => flattening the Gaussian - decreasing the weight for similar pixels and increasing weight for unsimilar pixels => affects cost of cut and segmentation
-- **radius** - Decides the size of the neighbouring area of a pixel. A larger radius will include pixels even further away into account; this, however, increases time complexity.
+- **radius** - Decides the size of the neighbouring area of a pixel. A larger radius will include pixels even further away into account, and result in fewer segments; this, however, increases time complexity.
 
 Key take-aways are:
 
@@ -154,6 +154,52 @@ The most effective parameters to reduce the subdivision and still result in sati
 **Question 9**: Why does Normalized Cut prefer cuts of approximately equal size? Does this happen in practice? 
 
 **Answers:**
+
+There is a theoretical reason behind this. 
+
+Since assoc(Sub,V) includes all the edges that are connecting any vertices in the subset Sub, we have, for the entire set V:
+$$
+assoc(V) = assoc(A,V) + assoc(B,V) - cut(A,B) \quad (i)
+$$
+where we subtract the cut(A,B) i.e. the sum of edges that connect two vertices in A and B respectively.
+
+We rewrite this expression and isolate assoc(B,V):
+$$
+assoc(B,V) = assoc(V) - assoc(A,V) + cut(A,B) \quad (ii)
+$$
+
+
+We also have our expression for Ncut(A,B) as:
+$$
+Ncut(A,B) = \frac{cut(A,B)}{assoc(A,V)} + \frac{cut(A,B)}{assoc(B,V)} \quad (iii)
+$$
+
+
+Then, given the expression for Ncut(A,B), we can substitute our expression for assoc(B,V) (ii):
+$$
+Ncut(A,B) = \frac{cut(A,B)}{assoc(A,V)} + \frac{cut(A,B)}{assoc(V)-assoc(A,V)+cut(A,B)} \quad (iv)
+$$
+
+
+Since our goal is to minimize Ncut(A,B) we can take the derivative of our expression of Ncut(A,B) (iv) and set it to 0:
+$$
+Ncut(A,B) = \frac{cut(A,B)}{assoc(A,V)} + \frac{cut(A,B)}{assoc(V)-assoc(A,V)+cut(A,B)} = \\\{Wolfram Alpha\} => \\
+\frac{\delta Ncut(A,B)}{\delta assoc(A,V)} = \frac{cut(A,B)(assoc(V)+cut(A,B))(-2assoc(V)+cut(A,B))}{assoc(A,V)^2(assoc(V)-assoc(A,V)+cut(A,B))^2} = 0 \quad (v)
+$$
+
+
+We then simply this expression for the derivative in (v):
+$$
+-2assoc(A,V) + assoc(V) + cut(A,B) = 0 \\
+=>\\
+2assoc(A,V) = assoc(V)+cut(A,B)=> assoc(A,V) = 1/2(assoc(V)+cut(A,B))
+\\=> \{substituting \space (i)\} => \\
+assoc(A,V) = 1/2(assoc(A,V)+assoc(B,V)-cut(A,B)+cut(A,B)) \\= 1/2(assoc(A,V)+assoc(B,V))  \\=>\\
+1/2assoc(A,V) = 1/2 ssoc(B,V) => assoc(A,V) = assoc(B,V)
+$$
+
+
+In practice this happen if we only look at maximum depth, then the image gets cut into two equally proportional segments; however, when we introduce the other params, the proportionality will be different.
 
 
 
