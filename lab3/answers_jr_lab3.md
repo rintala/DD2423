@@ -135,15 +135,19 @@ Key take-aways are:
 - If we get an image with lots of complexity, ncuts_thresh has to be increased - like for example the tiger vs. orange
 - Max_depth could be increased in order to increase the amount of cuts that will be made, however it was kept unchanged during these tests, and thus did not affect any 
 
-
+<!-- INSERT IMAGES HERE -->
 
 ---
 
-**Question 8**: Which parameter(s) was most effective for reducing the subdivision and still result in a satisfactory segmentation? 
+**Question 8**: Which parameter(s) was most effective for reducing the subdivision and still result in a satisfactory segmentation?
 
 **Answers:**
 
+The most effective parameters to reduce the subdivision and still result in satisfactory results of segmentation was:
 
+- max_depth
+- ncut_thresh
+- min_area
 
 ---
 
@@ -159,7 +163,7 @@ Key take-aways are:
 
 **Answers:**
 
-
+When we increase radius, the time of computation increases quite vastly, since we then incorporate more of the neigbouring pixels into the calculations. The results show, as expected, larger segments. However, the colours seem to be slightly off.
 
 ---
 
