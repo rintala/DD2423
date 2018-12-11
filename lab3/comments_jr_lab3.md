@@ -56,6 +56,7 @@
 
 - **Mean Shift Clustering**
   - https://www.youtube.com/watch?v=Evc53OaDTFc
+  - https://www.youtube.com/watch?v=yhz8Fm0ymm8
   - Cluster: all data points in the attraction basin of a mode
   - Attraction basin: the region for which all trajectories lead to the same mode
 

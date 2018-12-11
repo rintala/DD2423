@@ -221,7 +221,19 @@ When we increase radius, the time of computation increases quite vastly, since w
 
 **Answers:**
 
+*alpha* - the maximum cost of an edge
 
+- When we increase alpha, we lower the maximum cost of an edge, which results in it becoming easier to cut strong edges.
+
+*sigma* - how much the cost decays for decreasing similarity between neighbouring pixels
+
+- When we increase sigma, a decrease in similarity from neighbouring pixels, will mean cost decays even more, resulting in more simplified cuts
+
+If we lower both parameters, our cuts become more sensitive and the accuracy of segmentation decreases, since we will be more ok with separating/cutting similar pixels (with high edge values).
+
+<!-- TODO: RELATE TO PICS AND ACTUAL VALUES/RANGES -->
+
+<!-- TODO: INSERT IMAGES -->
 
 ---
 
@@ -229,7 +241,9 @@ When we increase radius, the time of computation increases quite vastly, since w
 
 **Answers:**
 
- 
+A K value of 3 is still OK, i.e. using 3 Gaussian components, fewer than that results in a worse performance and segmentation.
+
+<!-- TODO: INSERT IMAGES -->
 
 ---
 
@@ -237,7 +251,7 @@ When we increase radius, the time of computation increases quite vastly, since w
 
 **Answers:**
 
-
+It definitely depends on the picture i.e. context that the algorithm is applied to. If, there is some clear object that can be surrounded by the bounding rectangle, that will help the accuracy of the segmentation by more specifically defining a representative training set. However, in many cases there might not be one specific object, rather a mix of foreground and background, like for instance in a landscape image, then a bounding rectangle will be of no help.
 
 ---
 
