@@ -259,6 +259,32 @@ It definitely depends on the picture i.e. context that the algorithm is applied 
 
 **Answers:**
 
+The different methods for image foreground-background segmentation:
+
+1. K-means
+2. Mean-shift
+3. Normalized Cut
+4. Energy-based segmentation with Graph Cut
+
+
+
+**Similarities:**
+
+- All the methods use clustering to group affinite points of data (mainly based on similarities in colour)
+- All the methods do segmentation with the goal of grouping similar parts of the image together in one cluster, and non-similar parts of the image into other clusters
+- Mean-shift and Graph Cut both use the Gaussian distribution to model data
+- Both of Normalized Cut and Graph Cut are graph-based i.e. they look at the image as a graph, with vertices and edges connecting them, based on some similarity measure
+
+
+
+**Differences:**
+
+- Graph Cut is essentially the only model that need prior information about the expected ratio of foreground/background (in order to produce more accurate results), whereas Normalized cut does not need any such information
+- Mean-shift (and the Graph-based methods) does take spatial information into account, whereas K-means does not and only looks at the colour dimension
+  - This causes K-means to often result in segments which go across areas that are separated
+
+
+
 
 
 ---
