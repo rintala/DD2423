@@ -67,24 +67,35 @@ B = find(U2 <= t);
 % if Ncut is larger than threshold, stop recursion.
 ncut = ncuts_value(t, U2, W, D);
 fprintf('Cutting ncut=%.3f sizes=(%d,%d)\n', ncut, length(A), length(B));
-if (length(A) < sArea || length(B) < sArea) || ncut > sNcut || depth > maxDepth
+if (length(A) < sArea && length(B) < sArea) || ncut > sNcut || depth > maxDepth
     Seg{1}   = I;
     Id{1}   = id; % for debugging
     Ncut{1} = ncut; % for duebuggin
     return;
 end
 
-% Seg segments of A
-[SegA IdA NcutA] = ncuts_partition(I(A), W(A, A), sNcut, sArea, [id '-A'], maxDepth, depth+1);
+if length(A) >= sArea
+    % Seg segments of A
+    [SegA IdA NcutA] = ncuts_partition(I(A), W(A, A), sNcut, sArea, [id '-A'], maxDepth, depth+1);
+else
+    SegA = I(A);
+    IdA = [id '-A'];
+    NcutA = ncut;
+end
 % I(A): node index at V. A is index at the segment, I
 % W(A, A); % weight matrix in segment A
 
-% Seg segments of B
-[SegB IdB NcutB] = ncuts_partition(I(B), W(B, B), sNcut, sArea, [id '-B'], maxDepth, depth+1);
+if length(B) >= sArea
+    % Seg segments of B
+    [SegB IdB NcutB] = ncuts_partition(I(B), W(B, B), sNcut, sArea, [id '-B'], maxDepth, depth+1);
+else
+    SegB = I(B);
+    IdB = [id '-B'];
+    NcutB = ncut;
+end
 
 % concatenate cell arrays
 Seg   = [SegA SegB];
 Id   = [IdA IdB];
 Ncut = [NcutA NcutB];
 end
-

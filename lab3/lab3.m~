@@ -13,7 +13,7 @@ close all
 clear
 
 %---------------------------------------------
-K = 10;               %number of clusters used
+K = 6;               %number of clusters used
 L = 20;              %number of iterations
 seed = 14;           %seed used for random initialization
 scale_factor = 0.5;    %image downscale factor
@@ -22,7 +22,7 @@ threshold = 0.01;
 %---------------------------------------------
 
 i = 1;
-I_org = imread('tiger1.jpg');
+I_org = imread('orange.jpg');
 
 I = imresize(I_org, scale_factor);
 Iback = I;

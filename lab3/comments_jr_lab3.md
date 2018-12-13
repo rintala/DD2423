@@ -15,12 +15,14 @@
 
 
 - Delad apelsin är svår
-
 - Färg som avgör superpix?
-
   - boundary?
   - Where do we use "seed" in kmeans_segm?
 
+- I graph cut
+  - Den svart-vita, är den inverterad? NOPE
+  - Den sk. "prior" => prior foreground probabilities and final segmentation
+- 
 
 - **K-means**
 
@@ -74,6 +76,7 @@
   $$
   D = diag(\sigma^2_s,\sigma^2_s,\sigma^2_c,\sigma^2_c,\sigma^2_c)
   $$
+
 
 
   **Idea of mean-shift:**

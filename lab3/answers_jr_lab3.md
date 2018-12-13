@@ -18,7 +18,12 @@ Good luck!
 
 **Answers:**
 
-<!-- TODO: Answer -->
+The clusters are initialized randomly between the RGB values 0-255, which means we will get valid colours with cluster centers located evenly throughout the image spectra.
+
+Might have been better to just on before-hand initialize two clusters to the RGB values of the dominant colours of the image:
+
+- orange: [253, 105, 2]
+- white: [255, 255, 255]
 
 ---
 
@@ -26,11 +31,19 @@ Good luck!
 
 **Answers:**
 
-<!-- TODO: Answer -->
+It depends on what type of convergence we define, i.e. how exact we want our clusters to be. This is defined by out threshold, which I have set to 0.01; meaning we will continue iterating until the diff between the previous and new cluster centers is <0.01. We discover these relations by setting the parameter UNTIL_CONVERGENCE = TRUE:
 
-<!-- TODO: insert some table here of convergence comparison -->
+| K    | iterations needed - orange | iterations needed - tiger1 |
+| ---- | -------------------------- | -------------------------- |
+| 2    | 6                          | 9                          |
+| 4    | 10                         | 19                         |
+| 6    | 14                         | 28                         |
+| 8    | 24                         | 43                         |
+| 10   | 31                         | 53                         |
 
-- Setting UNTIL_CONVERGENCE = TRUE
+So the amount of iterations needed definitely depends on the complexity of the image used. A more complex image with more colours takes more iterations to converge, whereas a simpler image requires fewer iterations. K also determines the number of iterations until convergence; a high K, i.e. many cluster centers, leads to more iterations needed. Its however, hard to determine any exact number of iterations needed since we initialize the clusters randomly, which vastly determines the amount of iterations; thus, I have taken an avg. after running the clustering a repeated amount of times for each K.
+
+The number of iterations to reach convergence also depends on the Gaussian blur, defined by our $\sigma$, since a blurrier img. means less colours are present, which in turn means less colour differences are present; fewer differences in colour means less amount of iterations are needed to reach our criteria: *diff<threshold.*
 
 ---
 

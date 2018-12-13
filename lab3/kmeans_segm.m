@@ -1,4 +1,4 @@
-function [segmentation, centers, counter] = kmeans_segm(image, K, L, seed, UNTIL_CONV, threshold)
+function [segmentation, centers, counter] = kmeans_segm(img, K, L, seed, UNTIL_CONV, threshold)
 %IDEA: Let X be a set of pixels and V be a set of K cluster centers in 3D (R,G,B).
     %1. Randomly initialize the K cluster centers
     %2. Compute all distances between pixels and cluster centers
@@ -12,14 +12,13 @@ diff = 10;
 counter = 0;
 
 %Let X be a set of pixels and V be a set of K cluster centers in 3D (R,G,B)
-img = double(imresize(image,1));
-dim = ndims(img);
+img = double(imresize(img,1)); dim = ndims(img);
 
 if dim == 3
     [img_x, img_y, rgb] = size(img);
     X = reshape(img, img_x*img_y, 3);
 else
-    [img_x, rgb] = size(image);
+    [img_x, rgb] = size(img);
     img_y = 1;
     X = img;
 end
