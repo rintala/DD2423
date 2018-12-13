@@ -150,7 +150,7 @@ Key take-aways are:
 
 - If we reduce max_depth on images containing complex structures, we achieve bad results
 - If we get an image with lots of complexity, ncuts_thresh has to be increased - like for example the tiger vs. orange
-- Max_depth could be increased in order to increase the amount of cuts that will be made, however it was kept unchanged during these tests, and thus did not affect any 
+- Max_depth could be increased in order to increase the amount of cuts that will be made, however it was kept unchanged during these tests, and thus did not affect the relative results.
 
 
 
