@@ -15,7 +15,7 @@ g = zeros(size(I_vec_ones, 1), K);
 
 %2. Randomly initialize the K components using masked pixels
 seed = 4321;
-[segmentation, centers, counter] = kmeans_mix(I_vec_ones, K, L, seed);
+[segmentation, centers] = kmeans_mix(I_vec_ones, K, L, seed);
 cov = cell(K, 1);
 cov(:) = {rand * eye(3)};
 

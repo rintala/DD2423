@@ -41,7 +41,7 @@ distance = pdist2(X, V);
 %3. Iterate L times if ERHAN is TRUE, otherwise until convergence
 if UNTIL_CONV == true
     while (diff > threshold)
-        %4.  Assign each pixel to the cluster center for which the distance is min
+        %4. Assign each pixel to the cluster center for which the distance is min
         Vtemp = double(zeros(K, 3));
         count = double(zeros(K, 1));
         for pix=1:img_x*img_y

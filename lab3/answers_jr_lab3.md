@@ -158,31 +158,31 @@ The ideal parameters and their resulting segmentations for the images were the f
 
 ![norm_cuts_orange_opt_0.5_15_20_60_6](result/norm_cuts_orange_opt_0.5_15_20_60_6.jpg)
 
-***Fig. 1*** - orange: colour_bandwidth = 20, radius = 15, ncuts_thresh = 0.5, min_area = 60, max_depth = 6
+***Fig. 7.1*** - orange: colour_bandwidth = 20, radius = 15, ncuts_thresh = 0.5, min_area = 60, max_depth = 6
 
 ![norm_cuts_orange_opt_0.5_60_10](result/norm_cuts_orange_opt_0.5_60_10.jpg)
 
-***Fig. 2*** - orange: colour_bandwidth = 20, radius = 15, ncuts_thresh = 0.5, min_area = 60, max_depth = 10
+***Fig. 7.2*** - orange: colour_bandwidth = 20, radius = 15, ncuts_thresh = 0.5, min_area = 60, max_depth = 10
 
 
 
 ![norm_cuts_tiger_15_10_0.5_18_6](result/norm_cuts_tiger_15_10_0.5_18_6.jpg)
 
-***Fig.3*** - tiger1: colour_bandwidth = 15, radius = 10, ncuts_thresh = 0.5, min_area = 18, max_depth = 6
+***Fig. 7.3*** - tiger1: colour_bandwidth = 15, radius = 10, ncuts_thresh = 0.5, min_area = 18, max_depth = 6
 
 
 
 ![norm_cuts_tiger2_15_10_0.5_18_6](result/norm_cuts_tiger2_15_10_0.5_18_6.jpg)
 
-***Fig.4*** - tiger2: colour_bandwidth = 15, radius = 10, ncuts_thresh = 0.5, min_area = 18, max_depth = 6
+***Fig. 7.4*** - tiger2: colour_bandwidth = 15, radius = 10, ncuts_thresh = 0.5, min_area = 18, max_depth = 6
 
 ![norm_cuts_tiger2_15_10_0.5_18_12](/Users/jonathanrintala/Desktop/bildat18/labs/lab3/result/norm_cuts_tiger2_15_10_0.5_18_12.jpg)
 
-***Fig.5*** - tiger2: colour_bandwidth = 15, radius = 10, ncuts_thresh = 0.5, min_area = 18, max_depth = 12
+***Fig. 7.5*** - tiger2: colour_bandwidth = 15, radius = 10, ncuts_thresh = 0.5, min_area = 18, max_depth = 12
 
 ![norm_cuts_tiger3_10_10_0.5_10_10](result/norm_cuts_tiger3_10_10_0.5_10_10.jpg)
 
-***Fig.6*** - tiger2: colour_bandwidth = 10, radius = 10, ncuts_thresh = 0.5, min_area = 10, max_depth = 10
+***Fig. 7.6*** - tiger2: colour_bandwidth = 10, radius = 10, ncuts_thresh = 0.5, min_area = 10, max_depth = 10
 
 
 
@@ -272,17 +272,27 @@ When we increase radius, the time of computation increases quite vastly, since w
 
 *alpha* - the maximum cost of an edge
 
-- When we increase alpha, we lower the maximum cost of an edge, which results in it becoming easier to cut strong edges.
+- When we increase alpha, we increase the maximum cost of an edge, which results in it becoming more difficult to cut across similar pixels/smooth surfaces (since they will have even higher costs).
 
 *sigma* - how much the cost decays for decreasing similarity between neighbouring pixels
 
-- When we increase sigma, a decrease in similarity from neighbouring pixels, will mean cost decays even more, resulting in more simplified cuts
+- As we increase sigma, a decrease in a pixel's similarity from neighbouring pixels, means that cost will decay even more, resulting in it being easier to do more simplified cuts along the strong edges.
 
-If we lower both parameters, our cuts become more sensitive and the accuracy of segmentation decreases, since we will be more ok with separating/cutting similar pixels (with high edge values).
+If we lower both parameters, our cuts become more sensitive and the accuracy of segmentation decreases, since we will be more ok with separating/cutting similar pixels (with high edge values or costs).
 
-<!-- TODO: RELATE TO PICS AND ACTUAL VALUES/RANGES -->
+![gcut_20_15_10](result/gcut_20_15_10.jpg)
 
-<!-- TODO: INSERT IMAGES -->
+***Fig. 11.1*** - tiger1: alpha = 15, sigma = 10
+
+![gcut_8_6_30](/Users/jonathanrintala/Desktop/bildat18/labs/lab3/result/gcut_8_6_30.jpg)
+
+***Fig. 11.2*** - tiger2: alpha = 6, sigma = 30
+
+![gcut_20_15_10_t3](/Users/jonathanrintala/Desktop/bildat18/labs/lab3/result/gcut_20_15_10_t3.jpg)
+
+***Fig. 11.3*** - tiger3: alpha = 15, sigma = 10
+
+
 
 ---
 
@@ -290,9 +300,9 @@ If we lower both parameters, our cuts become more sensitive and the accuracy of 
 
 **Answers:**
 
-A K value of 3 is still OK, i.e. using 3 Gaussian components, fewer than that results in a worse performance and segmentation.
+A K value of 3 is still OK, i.e. using 3 Gaussian components, fewer than that results in a worse performance and segmentation. If we only have K=2, we will basically only get two segments/blocks that does not make a good representation of the original image.
 
-<!-- TODO: INSERT IMAGES -->
+
 
 ---
 
@@ -301,6 +311,8 @@ A K value of 3 is still OK, i.e. using 3 Gaussian components, fewer than that re
 **Answers:**
 
 It definitely depends on the picture i.e. context that the algorithm is applied to. If, there is some clear object that can be surrounded by the bounding rectangle, that will help the accuracy of the segmentation by more specifically defining a representative training set. However, in many cases there might not be one specific object, rather a mix of foreground and background, like for instance in a landscape image, then a bounding rectangle will be of no help.
+
+
 
 ---
 
