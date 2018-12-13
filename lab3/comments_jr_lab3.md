@@ -22,7 +22,6 @@
 - I graph cut
   - Den svart-vita, är den inverterad? NOPE
   - Den sk. "prior" => prior foreground probabilities and final segmentation
-- 
 
 - **K-means**
 

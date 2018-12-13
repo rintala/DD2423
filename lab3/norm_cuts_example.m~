@@ -2,20 +2,20 @@
 %// 4. NORMALIZED CUT
 
 %--------------------Parameters-------------------------
-colour_bandwidth = 15.0;   % color bandwidth
-radius = 10;              % maximum neighbourhood distance
+colour_bandwidth = 20.0;    % color bandwidth
+radius = 15;                % maximum neighbourhood distance
 
 %----Control of recursive subdivision-----
-ncuts_thresh = 0.5;      % cutting threshold
-min_area = 10;           % minimum area of segment
-max_depth = 10;           % maximum splitting depth
+ncuts_thresh = 0.5;        % cutting threshold
+min_area = 60;              % minimum area of segment
+max_depth = 6;              % maximum splitting depth
 %-----------------------------------------
 
 scale_factor = 0.4;     % image downscale factor
 image_sigma = 2.0;      % image preblurring scale
 %-------------------------------------------------------
 
-I = imread('tiger3.jpg');
+I = imread('orange.jpg');
 I = imresize(I, scale_factor);
 Iback = I;
 d = 2*ceil(image_sigma*2) + 1;

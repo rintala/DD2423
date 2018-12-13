@@ -83,6 +83,10 @@ It's evident the tiger images are of a more complex structure, with finer detail
 
 *The spatial bandwidth:* A high spatial variance/bandwidth means the unicolor areas will be larger. The number of modes and number of modes will decrease, as we increase the spatial bandwidth. The reason being, more pixels are included in the mean calculation, since our interest region is larger.
 
+- Since number of modes become larger when spatial bandwidth (region of interest) increases - we can say that the bandwidth affects the density function in our five-dimensional space
+  - If we have a small bandwidth => more pointy peaks i.e. higher gradient ascent => more accurate assignment of pixels to modes (position-wise)
+  - If we have a larger bandwidth => flattened Gaussian that means neighbouring pixels will be blended together => making it easier for assignment of pixels to modes that are more spread-out
+
 *The colour bandwidth:* A high colour variance/bandwidth means the image will be smoothened to a higher degree. The bandwidth determines the radius for the colour space.
 
 ![q5_orange_1](img/q5_orange_1.png)
@@ -138,7 +142,7 @@ The ideal params definitely depend on the image they are applied to. The functio
 - **max_depth** - Sets the amount of recursive calls that are made i.e. the amount of cuts that will be made. If we increase max_depth, we will get more segments.
 
 - **color_bandwidth** - This param affects how similar pixels are weighted.
-  - Low bandwidth => large weights for similar pixels and low weigths for unsimilar pixels
+  - Low bandwidth => large weights for similar pixels and low weights for unsimilar pixels
   - High bandwidth => flattening the Gaussian - decreasing the weight for similar pixels and increasing weight for unsimilar pixels => affects cost of cut and segmentation
 - **radius** - Decides the size of the neighbouring area of a pixel. A larger radius will include pixels even further away into account, and result in fewer segments; this, however, increases time complexity.
 
@@ -148,7 +152,39 @@ Key take-aways are:
 - If we get an image with lots of complexity, ncuts_thresh has to be increased - like for example the tiger vs. orange
 - Max_depth could be increased in order to increase the amount of cuts that will be made, however it was kept unchanged during these tests, and thus did not affect any 
 
-<!-- INSERT IMAGES HERE -->
+
+
+The ideal parameters and their resulting segmentations for the images were the following:
+
+![norm_cuts_orange_opt_0.5_15_20_60_6](result/norm_cuts_orange_opt_0.5_15_20_60_6.jpg)
+
+***Fig. 1*** - orange: colour_bandwidth = 20, radius = 15, ncuts_thresh = 0.5, min_area = 60, max_depth = 6
+
+![norm_cuts_orange_opt_0.5_60_10](result/norm_cuts_orange_opt_0.5_60_10.jpg)
+
+***Fig. 2*** - orange: colour_bandwidth = 20, radius = 15, ncuts_thresh = 0.5, min_area = 60, max_depth = 10
+
+
+
+![norm_cuts_tiger_15_10_0.5_18_6](result/norm_cuts_tiger_15_10_0.5_18_6.jpg)
+
+***Fig.3*** - tiger1: colour_bandwidth = 15, radius = 10, ncuts_thresh = 0.5, min_area = 18, max_depth = 6
+
+
+
+![norm_cuts_tiger2_15_10_0.5_18_6](result/norm_cuts_tiger2_15_10_0.5_18_6.jpg)
+
+***Fig.4*** - tiger2: colour_bandwidth = 15, radius = 10, ncuts_thresh = 0.5, min_area = 18, max_depth = 6
+
+![norm_cuts_tiger2_15_10_0.5_18_12](/Users/jonathanrintala/Desktop/bildat18/labs/lab3/result/norm_cuts_tiger2_15_10_0.5_18_12.jpg)
+
+***Fig.5*** - tiger2: colour_bandwidth = 15, radius = 10, ncuts_thresh = 0.5, min_area = 18, max_depth = 12
+
+![norm_cuts_tiger3_10_10_0.5_10_10](result/norm_cuts_tiger3_10_10_0.5_10_10.jpg)
+
+***Fig.6*** - tiger2: colour_bandwidth = 10, radius = 10, ncuts_thresh = 0.5, min_area = 10, max_depth = 10
+
+
 
 ---
 
