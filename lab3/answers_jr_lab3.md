@@ -346,12 +346,6 @@ The different methods for image foreground-background segmentation:
 
 
 
-
-
 ---
 
 
-
- 
-
- 

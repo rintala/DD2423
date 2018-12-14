@@ -1,6 +1,5 @@
 function [prob] = mixture_prob (img, K, L, mask)
-%Use mask to identify pixels from img, used to 
-%estimate a mix of K Gaussian components
+%Use mask to identify pixels from img, used to estimate a mix of K Gaussian components
 
 %Img no. rows and cols
 n_rows = size(img, 1);

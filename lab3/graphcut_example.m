@@ -15,9 +15,9 @@ area_scaled = int16(area*scale_factor);
 
 Inew = mean_segments(Iback, segm);
 I = overlay_bounds(Iback, segm);
-imwrite(Inew,'lab3/result/graphcut1.png')
-imwrite(I,'lab3/result/graphcut2.png')
-imwrite(prior,'lab3/result/graphcut3.png')
+imwrite(Inew,'lab3/result/gcut1.png')
+imwrite(I,'lab3/result/gcut2.png')
+imwrite(prior,'lab3/result/gcut3.png')
 subplot(2,2,1); imshow(Inew); title('Resulting segmentation');
 subplot(2,2,2); imshow(I); title('Overlay bounds using Graph Cut');
 subplot(2,2,3); imshow(prior); title('Prior foreground probabilities');

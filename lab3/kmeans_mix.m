@@ -8,11 +8,11 @@ for i = 1 : K
     clus_centers(i, :) = I_vec(idx(i), :);
 end
 
-% Compute all distances between pixels and cluster centers
-D = pdist2(clus_centers, I_vec, 'euclidean');
+%Compute dist <=> pixels and cluster centroids
+D_vec = pdist2(clus_centers, I_vec, 'euclidean');
 
 for i = 1 : L
-    [~, cen_idx] = min(D);
+    [~, cen_idx] = min(D_vec);
     
     %Recompute
     for j = 1 : K
@@ -23,10 +23,9 @@ for i = 1 : L
             clus_centers(j, :) = double(mean(I_vec(n_idx, :)));
         end
     end
-
-    D = pdist2(clus_centers, I_vec, 'euclidean');
+    D_vec = pdist2(clus_centers, I_vec, 'euclidean');
 end
 
-[~, cen_idx] = min(D);
+[~, cen_idx] = min(D_vec);
 segmentation = cen_idx;
 centers = clus_centers;
