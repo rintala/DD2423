@@ -276,7 +276,7 @@ When we increase radius, the time of computation increases quite vastly, since w
 
 *sigma* - how much the cost decays for decreasing similarity between neighbouring pixels
 
-- As we increase sigma, a decrease in a pixel's similarity from neighbouring pixels, means that cost will decay even more, resulting in it being easier to do more simplified cuts along the strong edges.
+- As we decrease sigma, a decrease in a pixel's similarity from neighbouring pixels, means that cost will decay even more, resulting in it being easier to do more simplified cuts along the strong edges.
 
 If we lower both parameters, our cuts become more sensitive and the accuracy of segmentation decreases, since we will be more ok with separating/cutting similar pixels (with high edge values or costs).
 
